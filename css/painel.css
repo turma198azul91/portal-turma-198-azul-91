@@ -1,6 +1,3 @@
-/* ==========================================================================
-   CONFIGURAÇÕES GLOBAIS
-   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -12,13 +9,12 @@ body, html {
     width: 100%;
     height: 100%;
     background-color: #0a2240;
-    overflow: hidden; /* Garante tela estática no Computador/Notebook */
+    overflow: hidden;
 }
 
 .hero-container {
     width: 100%;
     height: 100vh;
-    /* Caminho corrigido recuando uma pasta (../) para acessar as imagens */
     background-image: url('../assets/imagens/entradaEEAR.jpeg');
     background-size: cover;
     background-position: center;
@@ -46,9 +42,6 @@ body, html {
     justify-content: flex-start;
 }
 
-/* ==========================================================================
-   ELEMENTOS DE TOPO
-   ========================================================================== */
 .header-title {
     display: flex;
     align-items: center;
@@ -92,9 +85,6 @@ body, html {
     margin-right: 6px;
 }
 
-/* ==========================================================================
-   MENU DE NAVEGAÇÃO SUPERIOR
-   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: center;
@@ -129,41 +119,35 @@ body, html {
     background: linear-gradient(135deg, #226bcf, #154c96);
 }
 
-/* ==========================================================================
-   ÁREA DO PAINEL (LAYOUT XADREZ - 3 LINHAS FLUIDAS)
-   ========================================================================== */
 .panel-section {
     width: 100%;
     flex-grow: 1;
     min-height: 0; 
     display: flex;
-    flex-direction: column; /* Alinha as linhas uma abaixo da outra */
-    gap: 12px; /* Espaço compacto entre as linhas */
+    flex-direction: column;
+    gap: 12px;
     padding-bottom: 5px;
 }
 
-/* A Moldura agora é uma Linha Horizontal */
 .panel-row {
     display: flex;
     align-items: center;
     gap: 20px;
     background: rgba(8, 27, 54, 0.8); 
-    padding: 10px 20px; /* Padding reduzido para achatar a moldura */
+    padding: 10px 20px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     overflow: hidden;
-    flex: 1; /* Faz as 3 dividirem o espaço vertical da tela igualmente */
+    flex: 1;
 }
 
-/* A mágica do Xadrez: Inverte a ordem do texto e da foto na segunda linha */
 .panel-row.inverse {
     flex-direction: row-reverse;
 }
 
-/* Caixas de Texto */
 .card-text {
-    flex: 1.6; /* Texto ganha prioridade na largura */
+    flex: 1.6;
     color: #ffffff;
     height: 100%;
     display: flex;
@@ -175,46 +159,41 @@ body, html {
     font-size: 1.15rem;
     color: #ffffff;
     margin-bottom: 5px;
-    border-left: 4px solid #1b5cb8; /* Barrinha azul elegante na lateral esquerda do título */
+    border-left: 4px solid #1b5cb8;
     padding-left: 8px;
 }
 
 .card-text p {
-    font-size: 1rem; /* Fonte confortável solicitada */
+    font-size: 1rem;
     line-height: 1.45;
     color: #cbd5e1;
     font-weight: 400;
     text-align: justify;
 }
 
-/* Caixas de Imagem nas Laterais */
 .card-image {
     flex: 0.4;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
-/* Alinha a foto da linha invertida para a esquerda e as normais para a direita */
 .panel-row:not(.inverse) .card-image { margin-left: 25px; }
 .panel-row.inverse .card-image { margin-right: 25px; }
 
 .panel-photo {
     width: 100%;
-    max-width: 220px;  /* Aumentamos de 180px para 220px */
+    max-width: 220px;  
     height: auto;
-    max-height: 145px; /* Aumentamos de 125px para 145px para manter a proporção */
+    max-height: 145px;
     object-fit: contain; 
     border: 2px solid #ffffff;
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* ==========================================================================
-   LOGOTIPO FLUTUANTE
-   ========================================================================== */
 .logo-container {
     position: absolute;
     top: 20px;
@@ -233,9 +212,6 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE (Celular e Tablet) - Ativa a rolagem em telas pequenas
-   ========================================================================== */
 @media (max-width: 1024px) {
     body, html {
         overflow-y: auto; 
@@ -247,7 +223,7 @@ body, html {
 
     .panel-section {
         display: flex;
-        flex-direction: column; /* Pilha vertical no Celular */
+        flex-direction: column;
         gap: 20px;
     }
 

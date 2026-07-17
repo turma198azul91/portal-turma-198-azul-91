@@ -1,4 +1,3 @@
-/* Configurações Globais e Reset */
 * {
     margin: 0;
     padding: 0;
@@ -9,21 +8,19 @@
 body, html {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+    overflow: hidden;
 }
 
-/* Container Principal com Imagem de Fundo */
 .hero-container {
     width: 100%;
     height: 100vh;
-    background-image: url('../assets/imagens/entradaEEAR.jpeg'); /* Substitua pelo nome correto da sua imagem */
+    background-image: url('../assets/imagens/entradaEEAR.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
 }
 
-/* Camada azul escura sobreposta (Overlay) para dar contraste ao texto */
 .overlay {
     width: 100%;
     height: 100%;
@@ -33,11 +30,10 @@ body, html {
     align-items: stretch;
 }
 
-/* Container do Conteúdo centralizado */
 .content {
     text-align: center;
     color: #ffffff;
-    max-width: 1300px; /* ALTERADO: De 1200px para 1300px para dar mais espaço aos botões */
+    max-width: 1300px;
     width: 100%;
     padding: 60px 20px 80px 20px; 
     display: flex;
@@ -46,7 +42,6 @@ body, html {
     align-items: center;
 }
 
-/* Estilização do Título e Linhas Laterais */
 .header-title {
     display: flex;
     align-items: center;
@@ -57,14 +52,10 @@ body, html {
 
 .header-title h1 {
     font-size: 3rem;
-    font-weight: 900; /* Deixamos a fonte ainda mais grossa (Black) */
-    color: #0a3678; /* Azul escuro bem forte e imponente */
+    font-weight: 900;
+    color: #0a3678;
     letter-spacing: 2px;
-    
-    /* Cria um contorno branco nítido ao redor das letras */
     -webkit-text-stroke: 1.5px #ffffff; 
-    
-    /* Sombra projetada escura para dar profundidade e destacar do fundo */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
@@ -75,16 +66,14 @@ body, html {
     background: linear-gradient(to right, transparent, #ffffff, #1b5cb8, #ffffff, transparent);
 }
 
-/* Estrela separadora */
 .star-separator {
-    color: #0a3678; /* Estrela no mesmo azul forte */
+    color: #0a3678;
     font-size: 1.5rem;
     margin-bottom: 20px;
-    -webkit-text-stroke: 1px #ffffff; /* Contorno branco na estrela */
+    -webkit-text-stroke: 1px #ffffff;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
 }
 
-/* Texto de descrição */
 .description {
     font-size: 1.4rem;
     line-height: 1.8;
@@ -98,23 +87,21 @@ body, html {
 .sub-description {
     display: block;
     font-size: 1.15rem;
-    color: #ffffff; /* ALTERADO: Agora totalmente branco */
+    color: #ffffff;
     margin-top: 15px;
     font-weight: 400;
     opacity: 0.9;
 }
 
-/* Layout dos Botões em Linha (Opção 2) */
 .button-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* ALTERADO: De 15px para 10px para os botões ficarem mais juntos horizontalmente */
+    gap: 10px;
     flex-wrap: wrap;
     margin-top: auto;
 }
 
-/* Estilo dos Botões */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -125,22 +112,15 @@ body, html {
     text-decoration: none;
     font-size: 1.05rem;
     font-weight: 600;
-    
-    /* ALTERADO: Diminuímos o preenchimento lateral de 22px para 15px */
     padding: 12px 15px; 
-    
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.4); 
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease;
-    
-    /* ALTERADO: De 150px para 135px para caberem todos na mesma linha */
     min-width: 135px; 
-    
     animation: pulse-glow 3s infinite alternate;
 }
 
-/* Efeito ao passar o mouse */
 .btn:hover {
     transform: translateY(-4px);
     box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.5), 0 8px 25px rgba(27, 92, 184, 0.7);
@@ -157,43 +137,31 @@ body, html {
     }
 }
 
-/* Cor Amarela dos Ícones */
 .icon-yellow {
-    color: #e5b842; /* Amarelo ouro idêntico ao título */
+    color: #e5b842;
     font-size: 1.3rem;
 }
 
-/* ==========================================
-   CONFIGURAÇÃO DO LOGOTIPO COM ANIMAÇÃO DE GIRO
-   ========================================== */
-
-/* Posiciona o logo de forma flutuante no topo esquerdo da tela */
-/* Posiciona o logo um pouco mais afastado das bordas */
 .logo-container {
     position: absolute;
-    top: 35px; /* Aumentado para desgrudar do topo */
-    left: 40px; /* Aumentado para desgrudar da esquerda */
+    top: 35px;
+    left: 40px;
     z-index: 10;
 }
 
-/* Estilo da imagem do logotipo */
 .logo-turma {
-    width: 80px; /* Reduzido de 110px para 80px para ficar mais discreto */
+    width: 80px;
     height: auto;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
-    
-    /* ALTERADO: Nova animação de oscilação suave (efeito pêndulo/flutuante) */
     animation: oscillate 1.5s ease-in-out infinite alternate;
     transition: transform 0.5s ease;
 }
 
-/* Efeito ao passar o mouse: ele cresce um pouquinho e para de oscilar */
 .logo-turma:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
-/* CÓDIGO DA OSCILAÇÃO: Ele gira apenas 10 graus para cada lado, sem ficar de cabeça para baixo */
 @keyframes oscillate {
     0% {
         transform: rotate(-10deg);
@@ -203,47 +171,38 @@ body, html {
     }
 }
 
-/* ==========================================
-   ESTILIZAÇÃO DOS BOTÕES DE ADICIONAR
-   ========================================== */
-
-/* Cria o espaçamento horizontal maior antes de iniciar o grupo "Adicionar" */
 .btn-add-start {
-    margin-left: 40px; /* Cria um vão claro separando os 5 botões originais dos 2 novos */
+    margin-left: 40px;
 }
 
-/* Estilo diferenciado para destacar sutilmente que são botões de ação/inserção */
 .btn-add {
-    background: linear-gradient(135deg, #226bcf, #1b5cb8); /* Um azul ligeiramente mais vivo */
-    border-color: rgba(255, 255, 255, 0.6); /* Borda branca um pouco mais brilhante */
+    background: linear-gradient(135deg, #226bcf, #1b5cb8);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* Responsividade: No celular, removemos a margem lateral para não quebrar o layout vertical */
 @media (max-width: 992px) {
     .btn-add-start {
         margin-left: 0;
     }
 }
 
-/* Responsividade Básica para Celulares */
 @media (max-width: 768px) {
     .header-title h1 {
         font-size: 2rem;
     }
     .line {
-        display: none; /* Esconde as linhas laterais em telas pequenas */
+        display: none;
     }
     .description {
         font-size: 1rem;
     }
     .button-grid {
-        flex-direction: column; /* Botões empilham em telas de celular */
+        flex-direction: column;
         width: 100%;
     }
     .btn {
-        width: 80%; /* Botões ocupam 80% da tela no celular */
+        width: 80%;
     }
-
     .logo-container {
         position: relative;
         top: 0;
@@ -252,6 +211,6 @@ body, html {
         text-align: center;
     }
     .logo-turma {
-        width: 85px; /* Menor em telas mobile */
+        width: 85px;
     }
 }

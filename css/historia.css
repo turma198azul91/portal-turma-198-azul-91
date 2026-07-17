@@ -1,6 +1,3 @@
-/* ==========================================================================
-   CONFIGURAÇÕES GLOBAIS
-   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +9,7 @@ body, html {
     width: 100%;
     height: 100%;
     background-color: #0a2240;
-    overflow: hidden; /* Mantém a tela travada sem barras de rolagem no PC */
+    overflow: hidden;
 }
 
 .hero-container {
@@ -37,7 +34,7 @@ body, html {
 .content-wrapper {
     width: 98%;
     max-width: 1800px;
-    height: 98vh; /* Aproveita o espaço vertical máximo disponível */
+    height: 98vh;
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
@@ -45,9 +42,6 @@ body, html {
     justify-content: flex-start;
 }
 
-/* ==========================================================================
-   ELEMENTOS DE TOPO
-   ========================================================================== */
 .header-title {
     display: flex;
     align-items: center;
@@ -58,7 +52,7 @@ body, html {
 }
 
 .header-title h1 {
-    font-size: 2rem; /* Encolhido para liberar espaço vertical */
+    font-size: 2rem;
     font-weight: 900;
     color: #0a3678;
     letter-spacing: 2px;
@@ -76,7 +70,7 @@ body, html {
 .star-separator {
     color: #0a3678;
     font-size: 1rem;
-    margin-bottom: 10px; /* Reduzido para aproximar a navbar */
+    margin-bottom: 10px;
     -webkit-text-stroke: 1px #ffffff;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
 }
@@ -86,16 +80,13 @@ body, html {
     font-size: 1rem;
 }
 
-/* ==========================================================================
-   MENU DE NAVEGAÇÃO SUPERIOR (NAVBAR)
-   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 12px;
     width: 100%;
-    margin-bottom: 15px; /* Reduzido o espaço abaixo da navbar */
+    margin-bottom: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     padding-bottom: 12px;
 }
@@ -123,27 +114,23 @@ body, html {
     background: linear-gradient(135deg, #226bcf, #154c96);
 }
 
-/* ==========================================================================
-   ÁREA DE CONTEÚDO (GRID EXTREMAMENTE AJUSTADO)
-   ========================================================================== */
 .history-section {
     width: 100%;
     flex-grow: 1;
-    min-height: 0; /* CRUCIAL: Permite que o grid encolha sem transbordar texto */
+    min-height: 0;
     display: grid;
     grid-template-columns: 1fr 1fr; 
     grid-template-rows: 1fr 1fr;    
-    gap: 12px; /* Reduzido o vão entre os quadros */
+    gap: 12px;
     padding-bottom: 5px;
 }
 
-/* Bloco base da história */
 .history-block {
     display: flex;
     align-items: center;
     gap: 20px;
     background: rgba(8, 27, 54, 0.8); 
-    padding: 8px 15px;     /* Reduzimos o padding vertical para achatar a moldura */
+    padding: 8px 15px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -152,23 +139,22 @@ body, html {
 }
 
 .commander-highlight {
-    background: rgba(8, 27, 54, 0.8); /* Mesma cor exata de fundo das outras molduras */
-    border: 2px solid #1b5cb8;        /* Borda em azul-claro aeronáutico (se preferir branca, mude para #ffffff) */
+    background: rgba(8, 27, 54, 0.8);
+    border: 2px solid #1b5cb8;
     box-shadow: 0 4px 20px rgba(27, 92, 184, 0.2);
 }
 
-/* Caixas de Texto */
 .text-box {
     flex: 1.5;
     color: #ffffff;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza o texto verticalmente no espaço menor */
+    justify-content: center;
 }
 
 .text-box h2 {
-    font-size: 1.15rem; /* Fonte do título mais compacta */
+    font-size: 1.15rem;
     color: #ffffff;
     margin-bottom: 4px;
     border-left: 4px solid #1b5cb8;
@@ -180,21 +166,18 @@ body, html {
 }
 
 .text-box p {
-    font-size: 1rem; /* Reduzido de 0.92rem para 0.85rem: agora cabe TUDO com folga! */
+    font-size: 1rem;
     line-height: 1.45;
     color: #cbd5e1;
     font-weight: 300;
     text-align: justify;
 }
 
-/* ==========================================================================
-   SISTEMA DE MOLDURA FLEXÍVEL PARA AS FOTOS (PADRÃO SEGURO)
-   ========================================================================== */
 .image-box {
     flex: 0.7; 
     width: 100%;
     height: 100%;
-    max-height: 140px; /* Limita a altura máxima da área da foto */
+    max-height: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -204,13 +187,10 @@ body, html {
 .photo-frame {
     width: 100%;
     height: 100%;
-    max-width: 170px;  /* Largura padrão das fotos */
-    max-height: 110px; /* Altura padrão das fotos */
-    
-    /* 💡 SOLUÇÃO DA FLEXIBILIDADE: Se mudar a foto, ela se encaixa aqui perfeitamente sem distorcer */
+    max-width: 170px;
+    max-height: 110px;
     object-fit: contain; 
-    
-    background-color: #051429; /* Fundo escuro caso a imagem futura seja menor */
+    background-color: #051429;
     border-radius: 4px;
     border: 2px solid #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -222,12 +202,9 @@ body, html {
     color: #94a3b8;
     font-style: italic;
     text-align: center;
-    white-space: nowrap; /* Evita que a legenda pule linha e quebre o layout */
+    white-space: nowrap;
 }
 
-/* ==========================================================================
-   LOGOTIPO FLUTUANTE
-   ========================================================================== */
 .logo-container {
     position: absolute;
     top: 20px;
@@ -246,9 +223,6 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE (Celular e Tablet) - Ativa a rolagem em telas pequenas
-   ========================================================================== */
 @media (max-width: 1024px) {
     body, html {
         overflow-y: auto; 
@@ -272,10 +246,10 @@ body, html {
     }
 
     .text-box p {
-        font-size: 1rem;       /* Aumentamos de 0.85rem para 1rem (confortável para leitura) */
+        font-size: 1rem;
         line-height: 1.5;
         color: #cbd5e1;
-        font-weight: 400;      /* Um pouco mais encorpada para não forçar a vista */
+        font-weight: 400;
         text-align: justify;
     }
 
@@ -286,22 +260,22 @@ body, html {
     }
 
     .image-box {
-        flex: 0.4;             /* Reduzido de 0.7 para 0.4: a foto ocupa muito menos espaço horizontal */
+        flex: 0.4;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-end; /* Alinha a foto e o container totalmente encostados na borda direita */
+        align-items: flex-end;
         justify-content: center;
     }
 
     .photo-frame {
         width: 100%;
-        max-width: 140px;      /* Reduzido de 170px para 140px (as fotos ficam mais discretas) */
-        height: auto;          /* Altura livre para se ajustar proporcionalmente */
-        max-height: 100px;     /* Força uma altura máxima pequena para encolher a moldura inteira */
+        max-width: 140px;
+        height: auto;
+        max-height: 100px;
         object-fit: contain; 
-        background-color: transparent; /* Remove o fundo preto se a foto for menor */
+        background-color: transparent;
         border: 2px solid #ffffff;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
