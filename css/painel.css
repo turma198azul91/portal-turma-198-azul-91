@@ -1,0 +1,274 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: #0a2240;
+    overflow: hidden; /* Garante tela estática no Computador/Notebook */
+}
+
+.hero-container {
+    width: 100%;
+    height: 100vh;
+    /* Caminho corrigido recuando uma pasta (../) para acessar as imagens */
+    background-image: url('../assets/imagens/entradaEEAR.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 34, 64, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 98%;
+    max-width: 1800px;
+    height: 98vh;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* ==========================================================================
+   ELEMENTOS DE TOPO
+   ========================================================================== */
+.header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.header-title h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #0a3678;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1.5px #ffffff; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.line {
+    flex-grow: 1;
+    max-width: 250px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ffffff, #1b5cb8, #ffffff, transparent);
+}
+
+.star-separator {
+    color: #0a3678;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    -webkit-text-stroke: 1px #ffffff;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
+}
+
+.icon-yellow {
+    color: #e5b842;
+    font-size: 1rem;
+}
+
+.icon-blue {
+    color: #1b5cb8;
+    margin-right: 6px;
+}
+
+/* ==========================================================================
+   MENU DE NAVEGAÇÃO SUPERIOR
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 12px;
+}
+
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #1b5cb8, #113d7a);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 16px; 
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 3px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    min-width: 130px; 
+}
+
+.btn-nav:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #226bcf, #154c96);
+}
+
+/* ==========================================================================
+   ÁREA DO PAINEL (LAYOUT XADREZ - 3 LINHAS FLUIDAS)
+   ========================================================================== */
+.panel-section {
+    width: 100%;
+    flex-grow: 1;
+    min-height: 0; 
+    display: flex;
+    flex-direction: column; /* Alinha as linhas uma abaixo da outra */
+    gap: 12px; /* Espaço compacto entre as linhas */
+    padding-bottom: 5px;
+}
+
+/* A Moldura agora é uma Linha Horizontal */
+.panel-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(8, 27, 54, 0.8); 
+    padding: 10px 20px; /* Padding reduzido para achatar a moldura */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    flex: 1; /* Faz as 3 dividirem o espaço vertical da tela igualmente */
+}
+
+/* A mágica do Xadrez: Inverte a ordem do texto e da foto na segunda linha */
+.panel-row.inverse {
+    flex-direction: row-reverse;
+}
+
+/* Caixas de Texto */
+.card-text {
+    flex: 1.6; /* Texto ganha prioridade na largura */
+    color: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-text h2 {
+    font-size: 1.15rem;
+    color: #ffffff;
+    margin-bottom: 5px;
+    border-left: 4px solid #1b5cb8; /* Barrinha azul elegante na lateral esquerda do título */
+    padding-left: 8px;
+}
+
+.card-text p {
+    font-size: 1rem; /* Fonte confortável solicitada */
+    line-height: 1.45;
+    color: #cbd5e1;
+    font-weight: 400;
+    text-align: justify;
+}
+
+/* Caixas de Imagem nas Laterais */
+.card-image {
+    flex: 0.4;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+/* Alinha a foto da linha invertida para a esquerda e as normais para a direita */
+.panel-row:not(.inverse) .card-image { margin-left: 25px; }
+.panel-row.inverse .card-image { margin-right: 25px; }
+
+.panel-photo {
+    width: 100%;
+    max-width: 220px;  /* Aumentamos de 180px para 220px */
+    height: auto;
+    max-height: 145px; /* Aumentamos de 125px para 145px para manter a proporção */
+    object-fit: contain; 
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   LOGOTIPO FLUTUANTE
+   ========================================================================== */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    z-index: 10;
+}
+
+.logo-turma {
+    width: 60px;
+    height: auto;
+    animation: oscillate 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes oscillate {
+    0% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (Celular e Tablet) - Ativa a rolagem em telas pequenas
+   ========================================================================== */
+@media (max-width: 1024px) {
+    body, html {
+        overflow-y: auto; 
+    }
+    
+    .content-wrapper {
+        height: auto;
+    }
+
+    .panel-section {
+        display: flex;
+        flex-direction: column; /* Pilha vertical no Celular */
+        gap: 20px;
+    }
+
+    .panel-card {
+        height: auto;
+    }
+
+    .card-text p {
+        font-size: 1rem;
+    }
+
+    .panel-photo {
+        max-width: 240px;
+        max-height: 160px;
+    }
+
+    .logo-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 10px auto;
+        text-align: center;
+    }
+}
