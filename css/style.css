@@ -188,12 +188,14 @@ body, html {
 
 @media (max-width: 768px) {
     body, html {
-        overflow: auto !important; /* Libera a rolagem no celular */
+        overflow: auto !important;
         height: auto !important;
     }
     .hero-container {
         height: auto;
-        min-height: 100vh; /* Garante que o fundo cubra tudo se a página crescer */
+        min-height: 100vh;
+        background-position: center center; /* Centraliza a imagem da fachada no celular */
+        background-attachment: scroll;
     }
     .overlay {
         height: auto;
@@ -201,34 +203,68 @@ body, html {
     }
     .content {
         height: auto;
-        padding: 20px 10px 40px 10px;
+        padding: 10px 10px 30px 10px;
     }
+    
+    /* Ajuste do Título em duas linhas certinhas */
     .header-title h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
     }
+    .header-title h1::before {
+        content: "TURMA 198";
+    }
+    .header-title h1::after {
+        content: "AZUL 91";
+    }
+    /* Esconde o texto original que estava quebrando errado */
+    .header-title h1 {
+        font-size: 0;
+        -webkit-text-stroke: 0;
+        text-shadow: none;
+    }
+    /* Reaplica o estilo correto nas novas linhas */
+    .header-title h1::before, .header-title h1::after {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #0a3678;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 1.2px #ffffff; 
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    }
+
     .line {
         display: none;
     }
     .description {
         font-size: 1rem;
+        margin-bottom: 20px;
     }
     .button-grid {
         flex-direction: column;
         width: 100%;
+        gap: 15px;
     }
     .btn {
-        width: 80%;
+        width: 85%;
     }
+    
+    /* Logo menor, centralizado e sem fundo branco */
     .logo-container {
         position: relative;
         top: 0;
         left: 0;
-        margin: 20px auto 10px auto;
+        margin: 15px auto 5px auto;
         text-align: center;
-        background: transparent !important; /* Garante fundo transparente no container */
+        background: transparent !important;
+        box-shadow: none !important;
     }
     .logo-turma {
-        width: 85px;
-        background: transparent !important; /* Tira qualquer fundo branco do logo */
+        width: 50px; /* Reduzido de 85px para 50px */
+        background: transparent !important;
+        mix-blend-mode: multiply; /* Força a remoção de qualquer resquício de fundo branco */
     }
 }
