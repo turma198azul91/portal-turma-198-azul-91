@@ -205,9 +205,7 @@ body, html {
     }
 
     .header-title .logo-turma {
-        width: 45px;
-        background: transparent !important;
-        mix-blend-mode: multiply;
+        display: none !important;
     }
 
     .header-title h1 {
