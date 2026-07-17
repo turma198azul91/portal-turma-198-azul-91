@@ -51,10 +51,18 @@ body, html {
     width: 100%;
 }
 
+/* Ajuste do logo para computadores */
 .header-title .logo-turma {
     width: 55px;
     height: auto;
     background: transparent !important;
+    transition: transform 0.3s ease; /* Transição suave para o hover */
+}
+
+/* Efeito de hover restaurado para o novo local do logo */
+.header-title .logo-turma:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .header-title h1 {
@@ -149,11 +157,6 @@ body, html {
     font-size: 1.3rem;
 }
 
-.logo-turma:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
 @keyframes oscillate {
     0% {
         transform: rotate(-10deg);
@@ -204,7 +207,10 @@ body, html {
         margin-top: 15px;
     }
 
-    .header-title .logo-turma {
+    /* Blindagem total contra qualquer logo ou container de logo no celular */
+    .header-title .logo-turma, 
+    .logo-container, 
+    .logo-turma {
         display: none !important;
     }
 
