@@ -187,6 +187,22 @@ body, html {
 }
 
 @media (max-width: 768px) {
+    body, html {
+        overflow: auto !important; /* Libera a rolagem no celular */
+        height: auto !important;
+    }
+    .hero-container {
+        height: auto;
+        min-height: 100vh; /* Garante que o fundo cubra tudo se a página crescer */
+    }
+    .overlay {
+        height: auto;
+        min-height: 100vh;
+    }
+    .content {
+        height: auto;
+        padding: 20px 10px 40px 10px;
+    }
     .header-title h1 {
         font-size: 2rem;
     }
@@ -209,8 +225,10 @@ body, html {
         left: 0;
         margin: 20px auto 10px auto;
         text-align: center;
+        background: transparent !important; /* Garante fundo transparente no container */
     }
     .logo-turma {
         width: 85px;
+        background: transparent !important; /* Tira qualquer fundo branco do logo */
     }
 }

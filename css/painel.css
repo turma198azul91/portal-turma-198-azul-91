@@ -214,32 +214,42 @@ body, html {
 
 @media (max-width: 1024px) {
     body, html {
-        overflow-y: auto; 
+        overflow-y: auto !important; /* Força a rolagem vertical */
+        height: auto !important;
     }
-    
+    .hero-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    .overlay {
+        height: auto;
+        min-height: 100vh;
+        align-items: flex-start; /* Força o início no topo da tela */
+    }
     .content-wrapper {
         height: auto;
+        padding-top: 20px;
     }
-
     .panel-section {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; 
         gap: 20px;
     }
-
-    .panel-card {
+    .panel-row {
+        flex-direction: column !important; /* Desfaz o xadrez no mobile e empilha */
         height: auto;
+        padding: 20px;
     }
-
     .card-text p {
         font-size: 1rem;
     }
-
+    .card-image {
+        margin: 15px 0 0 0 !important; /* Ajusta as margens da foto no mobile */
+    }
     .panel-photo {
         max-width: 240px;
         max-height: 160px;
     }
-
     .logo-container {
         position: relative;
         top: 0;
