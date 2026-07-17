@@ -47,7 +47,14 @@ body, html {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.header-title .logo-turma {
+    width: 55px;
+    height: auto;
+    background: transparent !important;
 }
 
 .header-title h1 {
@@ -142,21 +149,6 @@ body, html {
     font-size: 1.3rem;
 }
 
-.logo-container {
-    position: absolute;
-    top: 35px;
-    left: 40px;
-    z-index: 10;
-}
-
-.logo-turma {
-    width: 80px;
-    height: auto;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
-    animation: oscillate 1.5s ease-in-out infinite alternate;
-    transition: transform 0.5s ease;
-}
-
 .logo-turma:hover {
     transform: scale(1.1);
     cursor: pointer;
@@ -194,7 +186,7 @@ body, html {
     .hero-container {
         height: auto;
         min-height: 100vh;
-        background-position: center center; /* Centraliza a imagem da fachada no celular */
+        background-position: center center;
         background-attachment: scroll;
     }
     .overlay {
@@ -206,27 +198,35 @@ body, html {
         padding: 10px 10px 30px 10px;
     }
     
-    /* Ajuste do Título em duas linhas certinhas */
+    .header-title {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .header-title .logo-turma {
+        width: 45px;
+        background: transparent !important;
+        mix-blend-mode: multiply;
+    }
+
     .header-title h1 {
-        font-size: 1.8rem;
+        font-size: 0;
+        -webkit-text-stroke: 0;
+        text-shadow: none;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 5px;
     }
+    
     .header-title h1::before {
         content: "TURMA 198";
     }
     .header-title h1::after {
         content: "AZUL 91";
     }
-    /* Esconde o texto original que estava quebrando errado */
-    .header-title h1 {
-        font-size: 0;
-        -webkit-text-stroke: 0;
-        text-shadow: none;
-    }
-    /* Reaplica o estilo correto nas novas linhas */
+    
     .header-title h1::before, .header-title h1::after {
         font-size: 1.8rem;
         font-weight: 900;
@@ -250,21 +250,5 @@ body, html {
     }
     .btn {
         width: 85%;
-    }
-    
-    /* Logo menor, centralizado e sem fundo branco */
-    .logo-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin: 15px auto 5px auto;
-        text-align: center;
-        background: transparent !important;
-        box-shadow: none !important;
-    }
-    .logo-turma {
-        width: 50px; /* Reduzido de 85px para 50px */
-        background: transparent !important;
-        mix-blend-mode: multiply; /* Força a remoção de qualquer resquício de fundo branco */
     }
 }
