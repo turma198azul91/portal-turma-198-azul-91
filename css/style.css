@@ -56,7 +56,8 @@ body, html {
     width: 55px;
     height: auto;
     background: transparent !important;
-    transition: transform 0.3s ease; /* Transição suave para o hover */
+    transition: transform 0.3s ease;
+    animation: oscillate 2s ease-in-out infinite alternate;
 }
 
 /* Efeito de hover restaurado para o novo local do logo */
