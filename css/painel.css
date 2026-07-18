@@ -85,7 +85,6 @@ body, html {
     margin-right: 6px;
 }
 
-/* Escondido por padrão no computador */
 .menu-toggle {
     display: none;
 }
@@ -217,9 +216,7 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
-/* ==========================================================================
-   REGRAS DE RESPONSIVIDADE PARA CELULAR E TABLET
-   ========================================================================== */
+/* Responsividade */
 @media (max-width: 1024px) {
     body, html {
         overflow-y: auto !important;
@@ -239,12 +236,10 @@ body, html {
         padding-top: 20px;
     }
 
-    /* Oculta completamente o logo e seu container no celular */
     .logo-container, .logo-turma {
         display: none !important;
     }
 
-    /* Ajuste do Título com margem de segurança para o botão no topo */
     .header-title {
         margin-top: 60px;
     }
@@ -276,7 +271,6 @@ body, html {
         display: none;
     }
 
-    /* Configuração do Botão Hambúrguer fixado no topo esquerdo */
     .menu-toggle {
         display: block;
         position: absolute;
@@ -297,9 +291,8 @@ body, html {
         transform: scale(0.95);
     }
 
-    /* Transformação da Navbar em Menu Retrátil */
     .navbar {
-        display: none; /* Escondido por padrão */
+        display: none;
         flex-direction: column;
         width: 100%;
         gap: 10px;
@@ -311,7 +304,6 @@ body, html {
         margin-bottom: 20px;
     }
 
-    /* Classe ativada via JavaScript quando clica no botão */
     .navbar.active {
         display: flex;
     }
@@ -322,7 +314,6 @@ body, html {
         font-size: 1rem;
     }
 
-    /* Ajustes das linhas de blocos de conteúdo */
     .panel-section {
         display: flex;
         flex-direction: column; 
