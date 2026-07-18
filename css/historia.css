@@ -257,8 +257,9 @@ body, html {
     }
 
     .header-title {
-        margin-top: 10px;
+        margin-top: 60px;
     }
+
     .header-title h1 {
         font-size: 0;
         -webkit-text-stroke: 0;
@@ -268,12 +269,15 @@ body, html {
         align-items: center;
         gap: 5px;
     }
+
     .header-title h1::before {
         content: "AZUL 91";
     }
+
     .header-title h1::after {
         content: "HISTÓRIA";
     }
+    
     .header-title h1::before, .header-title h1::after {
         font-size: 1.8rem;
         font-weight: 900;
