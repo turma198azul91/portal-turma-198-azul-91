@@ -80,6 +80,11 @@ body, html {
     font-size: 1rem;
 }
 
+/* Escondido por padrão no computador */
+.menu-toggle {
+    display: none;
+}
+
 .navbar {
     display: flex;
     justify-content: center;
@@ -173,6 +178,12 @@ body, html {
     text-align: justify;
 }
 
+/* Estilização das palavras em negrito */
+.text-box strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
 .image-box {
     flex: 0.7; 
     width: 100%;
@@ -223,9 +234,12 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
+/* ==========================================================================
+   REGRAS DE RESPONSIVIDADE PARA CELULAR E TABLET
+   ========================================================================== */
 @media (max-width: 1024px) {
     body, html {
-        overflow-y: auto !important; /* Força a rolagem vertical */
+        overflow-y: auto !important;
         height: auto !important;
     }
     .hero-container {
@@ -235,12 +249,95 @@ body, html {
     .overlay {
         height: auto;
         min-height: 100vh;
-        align-items: flex-start; /* Alinha o conteúdo começando do topo */
+        align-items: flex-start;
     }
     .content-wrapper {
         height: auto;
         padding-top: 20px;
     }
+
+    /* Oculta completamente o logo e seu container no celular */
+    .logo-container, .logo-turma {
+        display: none !important;
+    }
+
+    /* Ajuste do Título em duas linhas perfeitinhas */
+    .header-title {
+        margin-top: 10px;
+    }
+    .header-title h1 {
+        font-size: 0;
+        -webkit-text-stroke: 0;
+        text-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .header-title h1::before {
+        content: "AZUL 91";
+    }
+    .header-title h1::after {
+        content: "HISTÓRIA";
+    }
+    .header-title h1::before, .header-title h1::after {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #0a3678;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 1.2px #ffffff; 
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .line {
+        display: none;
+    }
+
+    /* Configuração do Botão Hambúrguer */
+    .menu-toggle {
+        display: block;
+        background: linear-gradient(135deg, #1b5cb8, #113d7a);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 10px 14px;
+        font-size: 1.3rem;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+        transition: all 0.2s ease;
+    }
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+
+    /* Transformação da Navbar em Menu Retrátil */
+    .navbar {
+        display: none; /* Escondido por padrão */
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        padding: 15px 10px;
+        background: rgba(6, 21, 43, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+    }
+
+    /* Classe ativada via JavaScript quando clica no botão */
+    .navbar.active {
+        display: flex; /* Revela o menu */
+    }
+
+    .btn-nav {
+        width: 100%; /* Botões ocupam a largura total em lista */
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    /* Ajustes dos blocos de conteúdo */
     .history-section {
         display: flex;
         flex-direction: column; 
@@ -249,9 +346,10 @@ body, html {
     .history-block {
         flex-direction: column;
         text-align: center;
-        height: auto; /* Deixa o bloco crescer conforme o texto */
+        height: auto;
         max-height: none;
         overflow: visible;
+        padding: 20px 15px;
     }
     .text-box p {
         font-size: 1rem;
@@ -264,19 +362,15 @@ body, html {
         border-left: none;
         padding-left: 0;
         font-size: 1.3rem;
+        margin-bottom: 12px;
     }
     .image-box {
         width: 100%;
-        align-items: center; /* Centraliza a foto no celular */
+        margin-top: 15px;
+        align-items: center;
     }
     .photo-frame {
-        max-width: 200px;
-        max-height: 150px;
-    }
-    .logo-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin: 10px auto;
+        max-width: 220px;
+        max-height: 160px;
     }
 }
