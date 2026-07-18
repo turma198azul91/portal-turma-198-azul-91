@@ -80,7 +80,6 @@ body, html {
     font-size: 1rem;
 }
 
-/* Escondido por padrão no computador */
 .menu-toggle {
     display: none;
 }
@@ -178,7 +177,6 @@ body, html {
     text-align: justify;
 }
 
-/* Estilização das palavras em negrito */
 .text-box strong {
     color: #ffffff;
     font-weight: 700;
@@ -234,9 +232,7 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
-/* ==========================================================================
-   REGRAS DE RESPONSIVIDADE PARA CELULAR E TABLET
-   ========================================================================== */
+/* Responsividade */
 @media (max-width: 1024px) {
     body, html {
         overflow-y: auto !important;
@@ -256,12 +252,10 @@ body, html {
         padding-top: 20px;
     }
 
-    /* Oculta completamente o logo e seu container no celular */
     .logo-container, .logo-turma {
         display: none !important;
     }
 
-    /* Ajuste do Título em duas linhas perfeitinhas */
     .header-title {
         margin-top: 10px;
     }
@@ -293,9 +287,11 @@ body, html {
         display: none;
     }
 
-    /* Configuração do Botão Hambúrguer */
     .menu-toggle {
         display: block;
+        position: absolute;
+        top: 20px;
+        left: 15px;
         background: linear-gradient(135deg, #1b5cb8, #113d7a);
         color: #ffffff;
         border: 1px solid rgba(255, 255, 255, 0.4);
@@ -303,18 +299,16 @@ body, html {
         font-size: 1.3rem;
         border-radius: 6px;
         cursor: pointer;
-        margin-bottom: 15px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         z-index: 100;
-        transition: all 0.2s ease;
+        transition: all 0.2s ease;;
     }
     .menu-toggle:active {
         transform: scale(0.95);
     }
 
-    /* Transformação da Navbar em Menu Retrátil */
     .navbar {
-        display: none; /* Escondido por padrão */
+        display: none;
         flex-direction: column;
         width: 100%;
         gap: 10px;
@@ -326,18 +320,16 @@ body, html {
         margin-bottom: 20px;
     }
 
-    /* Classe ativada via JavaScript quando clica no botão */
     .navbar.active {
-        display: flex; /* Revela o menu */
+        display: flex;
     }
 
     .btn-nav {
-        width: 100%; /* Botões ocupam a largura total em lista */
+        width: 100%;
         padding: 12px;
         font-size: 1rem;
     }
 
-    /* Ajustes dos blocos de conteúdo */
     .history-section {
         display: flex;
         flex-direction: column; 
