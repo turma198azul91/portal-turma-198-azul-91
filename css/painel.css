@@ -85,6 +85,11 @@ body, html {
     margin-right: 6px;
 }
 
+/* Escondido por padrão no computador */
+.menu-toggle {
+    display: none;
+}
+
 .navbar {
     display: flex;
     justify-content: center;
@@ -212,9 +217,12 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
+/* ==========================================================================
+   REGRAS DE RESPONSIVIDADE PARA CELULAR E TABLET
+   ========================================================================== */
 @media (max-width: 1024px) {
     body, html {
-        overflow-y: auto !important; /* Força a rolagem vertical */
+        overflow-y: auto !important;
         height: auto !important;
     }
     .hero-container {
@@ -224,37 +232,125 @@ body, html {
     .overlay {
         height: auto;
         min-height: 100vh;
-        align-items: flex-start; /* Força o início no topo da tela */
+        align-items: flex-start;
     }
     .content-wrapper {
         height: auto;
         padding-top: 20px;
     }
+
+    /* Oculta completamente o logo e seu container no celular */
+    .logo-container, .logo-turma {
+        display: none !important;
+    }
+
+    /* Ajuste do Título com margem de segurança para o botão no topo */
+    .header-title {
+        margin-top: 60px;
+    }
+    .header-title h1 {
+        font-size: 0;
+        -webkit-text-stroke: 0;
+        text-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .header-title h1::before {
+        content: "AZUL 91";
+    }
+    .header-title h1::after {
+        content: "PAINEL";
+    }
+    .header-title h1::before, .header-title h1::after {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #0a3678;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 1.2px #ffffff; 
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .line {
+        display: none;
+    }
+
+    /* Configuração do Botão Hambúrguer fixado no topo esquerdo */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        background: linear-gradient(135deg, #1b5cb8, #113d7a);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 10px 14px;
+        font-size: 1.3rem;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+        transition: all 0.2s ease;
+    }
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+
+    /* Transformação da Navbar em Menu Retrátil */
+    .navbar {
+        display: none; /* Escondido por padrão */
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        padding: 15px 10px;
+        background: rgba(6, 21, 43, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+    }
+
+    /* Classe ativada via JavaScript quando clica no botão */
+    .navbar.active {
+        display: flex;
+    }
+
+    .btn-nav {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    /* Ajustes das linhas de blocos de conteúdo */
     .panel-section {
         display: flex;
         flex-direction: column; 
         gap: 20px;
     }
     .panel-row {
-        flex-direction: column !important; /* Desfaz o xadrez no mobile e empilha */
+        flex-direction: column !important;
         height: auto;
         padding: 20px;
     }
+    .card-text {
+        text-align: center;
+    }
+    .card-text h2 {
+        border-left: none;
+        padding-left: 0;
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
     .card-text p {
         font-size: 1rem;
+        line-height: 1.5;
     }
     .card-image {
-        margin: 15px 0 0 0 !important; /* Ajusta as margens da foto no mobile */
+        margin: 15px 0 0 0 !important;
     }
     .panel-photo {
         max-width: 240px;
         max-height: 160px;
-    }
-    .logo-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin: 10px auto;
-        text-align: center;
     }
 }
