@@ -69,24 +69,24 @@
             <p>Confirme suas credenciais de integrante da Turma 198 para prosseguir.</p>
         </div>
 
-        <form id="formValidacao" class="modal-validacao-form">
+        <form id="formValidacao" class="modal-validacao-form" autocomplete="off">
             <!-- Campo Oculto para guardar o ID da Pergunta Sorteada -->
             <input type="hidden" id="modalIdPergunta">
 
             <div class="modal-campo-grupo">
                 <label for="modalMilhao"><i class="fa-solid fa-id-card"></i> Número do Milhão</label>
-                <input type="number" id="modalMilhao" required placeholder="Ex: 911000" min="0">
+                <input type="text" id="modalMilhao" required inputmode="numeric" pattern="[0-9]*">
             </div>
 
             <div class="modal-campo-grupo">
                 <label for="modalSenha"><i class="fa-solid fa-lock"></i> Senha da Turma</label>
-                <input type="password" id="modalSenha" required placeholder="Digite a senha oficial">
+                <input type="password" id="modalSenha" required>
             </div>
 
             <div class="modal-campo-grupo">
                 <label for="modalResposta"><i class="fa-solid fa-question"></i> Pergunta de Segurança</label>
                 <div id="modalTextoPergunta" class="modal-pergunta-texto">Carregando pergunta de segurança...</div>
-                <input type="text" id="modalResposta" required placeholder="Sua resposta (minúsculas, sem acentos)">
+                <input type="text" id="modalResposta" required>
             </div>
 
             <div id="modalMensagemErro" class="modal-mensagem-erro"></div>
@@ -96,11 +96,11 @@
             </button>
         </form>
     </div>
-    </div>
+</div>
 
     <script src="./js/script.js"></script>
 
-    <script src="./js/validacao.js"></script>
+    <script src="./js/validacao.js?v=1.1"></script>
 
 </body>
 </html>
