@@ -59,5 +59,48 @@
         </div>
     </main>
 
+    <div id="modalValidacao" class="modal-validacao-container">
+    <div class="modal-validacao-box">
+        <button id="btnFecharModal" class="modal-validacao-fechar">&times;</button>
+        
+        <div class="modal-validacao-header">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h2>Acesso Restrito</h2>
+            <p>Confirme suas credenciais de integrante da Turma 198 para prosseguir.</p>
+        </div>
+
+        <form id="formValidacao" class="modal-validacao-form">
+            <!-- Campo Oculto para guardar o ID da Pergunta Sorteada -->
+            <input type="hidden" id="modalIdPergunta">
+
+            <div class="modal-campo-grupo">
+                <label for="modalMilhao"><i class="fa-solid fa-id-card"></i> Número do Milhão</label>
+                <input type="number" id="modalMilhao" required placeholder="Ex: 911000" min="0">
+            </div>
+
+            <div class="modal-campo-grupo">
+                <label for="modalSenha"><i class="fa-solid fa-lock"></i> Senha da Turma</label>
+                <input type="password" id="modalSenha" required placeholder="Digite a senha oficial">
+            </div>
+
+            <div class="modal-campo-grupo">
+                <label for="modalResposta"><i class="fa-solid fa-question"></i> Pergunta de Segurança</label>
+                <div id="modalTextoPergunta" class="modal-pergunta-texto">Carregando pergunta de segurança...</div>
+                <input type="text" id="modalResposta" required placeholder="Sua resposta (minúsculas, sem acentos)">
+            </div>
+
+            <div id="modalMensagemErro" class="modal-mensagem-erro"></div>
+
+            <button type="submit" id="btnEnviarValidacao" class="modal-btn-enviar">
+                <i class="fa-solid fa-check"></i> Validar Credenciais
+            </button>
+        </form>
+    </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+
+    <script src="./js/validacao.js"></script>
+
 </body>
 </html>
