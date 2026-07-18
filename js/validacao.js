@@ -56,29 +56,20 @@ document.addEventListener("DOMContentLoaded", function() {
         btnEnviar.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Validando...';
         msgErro.style.display = "none";
 
-        const dadosFormulario = {
-            milhao: document.getElementById("modalMilhao").value,
-            senha: document.getElementById("modalSenha").value,
-            idPergunta: idPerguntaInput.value,
-            resposta: document.getElementById("modalResposta").value
-        };
+        // Coleta os dados digitados na tela
+        const milhao = document.getElementById("modalMilhao").value;
+        const senha = document.getElementById("modalSenha").value;
+        const idPergunta = idPerguntaInput.value;
+        const resposta = document.getElementById("modalResposta").value;
 
-        fetch(URL_SCRIPT_GOOGLE, {
-            method: "POST",
-            mode: "no-cors",
-            cache: "no-cache",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dadosFormulario)
-        })
-        .then(() => {
-            setTimeout(() => {
-                fetch(URL_SCRIPT_GOOGLE)
-                .then(res => res.json())
-                .then(verificacao => {
-                });
-            }, 500);
+        // Monta a requisição limpa para o Google processar as regras e gravar o bloqueio
+        const urlValidacao = URL_SCRIPT_GOOGLE + 
+            "?milhao=" + milhao + 
+            "&senha=" + encodeURIComponent(senha) + 
+            "&idP=" + idPergunta + 
+            "&resp=" + encodeURIComponent(resposta);
 
-            fetch(URL_SCRIPT_GOOGLE + "?milhao=" + dadosFormulario.milhao + "&senha=" + encodeURIComponent(dadosFormulario.senha) + "&idP=" + dadosFormulario.idPergunta + "&resp=" + encodeURIComponent(dadosFormulario.resposta))
+        fetch(urlValidacao)
             .then(res => res.json())
             .then(respostaReal => {
                 btnEnviar.disabled = false;
@@ -86,22 +77,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 if (respostaReal.status === "SUCESSO") {
                     modal.style.display = "none";
-                    
                     alert("Credenciais Confirmadas! Redirecionando para a área de upload...");
-                    
                 } else {
+                    // Agora exibe a mensagem em português vinda do Google Apps Script
                     msgErro.innerText = respostaReal.mensagem;
                     msgErro.style.display = "block";
-                    
                     btnEnviar.disabled = true;
                 }
             })
-            .catch(() => {
+            .catch(err => {
+                console.error(err);
                 btnEnviar.disabled = false;
                 btnEnviar.innerHTML = '<i class="fa-solid fa-check"></i> Validar Credenciais';
                 msgErro.innerText = "Erro ao processar validação. Tente novamente.";
                 msgErro.style.display = "block";
             });
-        });
     });
 });
