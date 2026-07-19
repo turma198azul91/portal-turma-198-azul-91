@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", function() {
         btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
     }
 
+    // Função para formatar o milhão esteticamente (Ex: 911515 -> 91-1515)
+    function formatarMilhao(num) {
+        const texto = String(num).replace(/\D/g, '');
+        if (texto.length === 6) {
+            return texto.substring(0, 2) + '-' + texto.substring(2);
+        }
+        return texto;
+    }
+
     function carregarPerguntaAleatoria() {
         textoPergunta.innerText = "Carregando pergunta de segurança...";
         idPerguntaInput.value = "";
@@ -52,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Fechamento dos Modais
     btnFecharValidacao.addEventListener("click", function() {
         modalValidacao.style.display = "none";
     });
@@ -101,12 +109,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     modalValidacao.style.display = "none";
                     
                     formUpload.reset();
+                    
+                    // Alimenta o campo oculto (com o número puro) e o visual (com a máscara)
                     document.getElementById("uploadMilhao").value = milhao;
+                    document.getElementById("uploadMilhaoVisual").value = formatarMilhao(milhao);
+                    
                     areaProgresso.style.display = "none";
                     barraProgresso.style.width = "0%";
                     
-                    // CORREÇÃO: Altera display para 'block' forcando a exibição e adiciona visibilidade manual caso a classe esconda
-                    modalUpload.style.setProperty("display", "block", "important");
+                    // Correção de centralização forçando a exibição flexível e alinhada
+                    modalUpload.style.setProperty("display", "flex", "important");
                 } 
                 else if (respostaReal.status === "BLOQUEADO_ATIVO") {
                     modalValidacao.style.display = "none";
@@ -128,69 +140,110 @@ document.addEventListener("DOMContentLoaded", function() {
                 btnEnviarValidacao.disabled = false;
                 btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
                 modalValidacao.style.display = "none";
-                alert("Usuário bloqueado. Contate o administrador!");
+                alert("Usuário gateway error ou bloqueado. Contate o administrador!");
             });
     });
 
-    // SUBMIT DO FORMULÁRIO DE UPLOAD
+    // SUBMIT DO FORMULÁRIO DE UPLOAD (MÚLTIPLOS ARQUIVOS SEQUENCIAIS)
     formUpload.addEventListener("submit", function(e) {
         e.preventDefault();
 
         const arquivoInput = document.getElementById("uploadArquivo");
-        if (arquivoInput.files.length === 0) return;
+        const listaArquivos = arquivoInput.files;
+        if (listaArquivos.length === 0) return;
+
+        // Validação inteligente de quantidade e tipos
+        let qtdFotos = 0;
+        let qtdVideos = 0;
+
+        for (let i = 0; i < listaArquivos.length; i++) {
+            if (listaArquivos[i].type.startsWith("video/")) {
+                qtdVideos++;
+            } else {
+                qtdFotos++;
+            }
+        }
+
+        if (qtdFotos > 5) {
+            alert(`Limite excedido! Você selecionou ${qtdFotos} fotos. O limite máximo é de 5 fotos por envio.`);
+            return;
+        }
+        if (qtdVideos > 2) {
+            alert(`Limite excedido! Você selecionou ${qtdVideos} vídeos. O limite máximo é de 2 vídeos por envio.`);
+            return;
+        }
 
         btnEnviarUpload.disabled = true;
-        btnEnviarUpload.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando arquivo...';
         areaProgresso.style.display = "block";
-        barraProgresso.style.width = "50%"; 
-        barraProgresso.innerText = "50% (Processando...)";
 
-        const arquivo = arquivoInput.files[0];
-        const leitor = new FileReader();
+        const nomeGuerra = document.getElementById("uploadNomeGuerra").value;
+        const milhao = document.getElementById("uploadMilhao").value;
+        const descricao = document.getElementById("uploadDescricao").value;
 
-        leitor.onload = function(evento) {
-            const rawBase64 = evento.target.result.split(',')[1];
+        let indiceAtual = 0;
+
+        // Função interna para ler e enviar um arquivo por vez de forma assíncrona
+        function enviarProximoArquivo() {
+            if (indiceAtual >= listaArquivos.length) {
+                // Todos os arquivos foram processados com sucesso
+                barraProgresso.style.width = "100%";
+                barraProgresso.innerText = "100% Concluído!";
+                setTimeout(() => {
+                    btnEnviarUpload.disabled = false;
+                    btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
+                    modalUpload.style.display = "none";
+                    alert("Todos os arquivos foram enviados com sucesso para o Drive da Turma 198!");
+                }, 800);
+                return;
+            }
+
+            const arquivo = listaArquivos[indiceAtual];
+            const numExibicao = indiceAtual + 1;
             
-            barraProgresso.style.width = "80%";
-            barraProgresso.innerText = "80% (Subindo para o Drive...)";
+            barraProgresso.style.width = "40%";
+            barraProgresso.innerText = `[${numExibicao}/${listaArquivos.length}] Lendo arquivo...`;
 
-            const dadosForm = {
-                nomeGuerra: document.getElementById("uploadNomeGuerra").value,
-                milhao: document.getElementById("uploadMilhao").value,
-                descricao: document.getElementById("uploadDescricao").value,
-                nomeArquivo: arquivo.name,
-                tipoMime: arquivo.type,
-                base64: rawBase64
+            const leitor = new FileReader();
+            leitor.onload = function(evento) {
+                const rawBase64 = evento.target.result.split(',')[1];
+                
+                barraProgresso.style.width = "75%";
+                barraProgresso.innerText = `[${numExibicao}/${listaArquivos.length}] Subindo para o Drive...`;
+
+                const dadosForm = {
+                    nomeGuerra: nomeGuerra,
+                    milhao: milhao,
+                    descricao: descricao,
+                    nomeArquivo: arquivo.name,
+                    tipoMime: arquivo.type,
+                    base64: rawBase64
+                };
+
+                fetch(URL_SCRIPT_GOOGLE, {
+                    method: "POST",
+                    body: JSON.stringify(dadosForm)
+                })
+                .then(res => res.json())
+                .then(respostaDrive => {
+                    if (respostaDrive.status === "SUCESSO") {
+                        indiceAtual++;
+                        enviarProximoArquivo(); // Avança para o próximo arquivo da fila
+                    } else {
+                        throw new Error(respostaDrive.mensagem || "Erro desconhecido no servidor.");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    btnEnviarUpload.disabled = false;
+                    btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
+                    alert(`O envio travou no arquivo: ${arquivo.name}.\nMotivo: ${err.message || "Erro de conexão"}`);
+                });
             };
 
-            fetch(URL_SCRIPT_GOOGLE, {
-                method: "POST",
-                body: JSON.stringify(dadosForm)
-            })
-            .then(res => res.json())
-            .then(respostaDrive => {
-                btnEnviarUpload.disabled = false;
-                btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
+            leitor.readAsDataURL(arquivo);
+        }
 
-                if (respostaDrive.status === "SUCESSO") {
-                    barraProgresso.style.width = "100%";
-                    barraProgresso.innerText = "100% Concluído!";
-                    setTimeout(() => {
-                        modalUpload.style.display = "none";
-                        alert("Arquivo enviado com sucesso para a Turma 198!");
-                    }, 500);
-                } else {
-                    alert("Erro ao enviar: " + respostaDrive.mensagem);
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                btnEnviarUpload.disabled = false;
-                btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
-                alert("Erro de conexão ao tentar subir o arquivo. Tente novamente.");
-            });
-        };
-
-        leitor.readAsDataURL(arquivo);
+        // Inicia a cadeia de envios com o primeiro item selecionado
+        enviarProximoArquivo();
     });
 });

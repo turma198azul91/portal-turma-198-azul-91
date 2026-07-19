@@ -28,7 +28,7 @@
                 <p class="description">
                     Um espaço dedicado para preservar nossa história, compartilhar memórias inesquecíveis <br>
                     e reunir cada momento que marcou a trajetória da nossa turma rumo ao azul do firmamento. <br>
-                    <span class="sub-description">Aqui, o nosso legado permanece vivo e compartilhado por todos nós.
+                    <span class="sub-description">Aqui, o nosso legado permanece vivo e compartilhado por todos nós.</span>
                 </p>
 
                 <nav class="button-grid">
@@ -59,92 +59,101 @@
         </div>
     </main>
 
+    <!-- MODAL 1: VALIDAÇÃO DE CREDENCIAIS -->
     <div id="modalValidacao" class="modal-validacao-container">
-    <div class="modal-validacao-box">
-        <button id="btnFecharModal" class="modal-validacao-fechar">&times;</button>
-        
-        <div class="modal-validacao-header">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h2>Acesso Restrito</h2>
-            <p>Confirme suas credenciais de integrante da Turma 198 para prosseguir.</p>
+        <div class="modal-validacao-box">
+            <button id="btnFecharModal" class="modal-validacao-fechar">&times;</button>
+            
+            <div class="modal-validacao-header">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h2>Acesso Restrito</h2>
+                <p>Confirme suas credenciais de integrante da Turma 198 para prosseguir.</p>
+            </div>
+
+            <form id="formValidacao" class="modal-validacao-form" autocomplete="off">
+                <input type="hidden" id="modalIdPergunta">
+
+                <div class="modal-campo-grupo">
+                    <label for="modalMilhao"><i class="fa-solid fa-id-card"></i> Milhão</label>
+                    <input type="text" id="modalMilhao" required inputmode="numeric" pattern="[0-9]*">
+                </div>
+
+                <div class="modal-campo-grupo">
+                    <label for="modalSenha"><i class="fa-solid fa-lock"></i> Senha</label>
+                    <input type="password" id="modalSenha" required>
+                </div>
+
+                <div class="modal-campo-grupo">
+                    <label for="modalResposta"><i class="fa-solid fa-question"></i> Pergunta de Segurança</label>
+                    <div id="modalTextoPergunta" class="modal-pergunta-texto">Carregando pergunta de segurança...</div>
+                    <input type="text" id="modalResposta" required>
+                </div>
+
+                <div id="modalMensagemErro" class="modal-mensagem-erro"></div>
+
+                <button type="submit" id="btnEnviarValidacao" class="modal-btn-enviar">
+                    <i class="fa-solid fa-check"></i> Validar Credenciais
+                </button>
+            </form>
         </div>
-
-        <form id="formValidacao" class="modal-validacao-form" autocomplete="off">
-            <input type="hidden" id="modalIdPergunta">
-
-            <div class="modal-campo-grupo">
-                <label for="modalMilhao"><i class="fa-solid fa-id-card"></i> Milhão</label>
-                <input type="text" id="modalMilhao" required inputmode="numeric" pattern="[0-9]*">
-            </div>
-
-            <div class="modal-campo-grupo">
-                <label for="modalSenha"><i class="fa-solid fa-lock"></i> Senha</label>
-                <input type="password" id="modalSenha" required>
-            </div>
-
-            <div class="modal-campo-grupo">
-                <label for="modalResposta"><i class="fa-solid fa-question"></i> Pergunta de Segurança</label>
-                <div id="modalTextoPergunta" class="modal-pergunta-texto">Carregando pergunta de segurança...</div>
-                <input type="text" id="modalResposta" required>
-            </div>
-
-            <div id="modalMensagemErro" class="modal-mensagem-erro"></div>
-
-            <button type="submit" id="btnEnviarValidacao" class="modal-btn-enviar">
-                <i class="fa-solid fa-check"></i> Validar Credenciais
-            </button>
-        </form>
     </div>
-</div>
 
+    <!-- MODAL 2: ÁREA DE UPLOAD (ATUALIZADO PARA MÚLTIPLOS) -->
     <div id="modalUpload" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span id="btnFecharModalUpload" class="close">&times;</span>
-        
-        <div class="modal-header">
-            <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color: #ffc107;"></i>
-            <h2>ÁREA DE ENVIOS</h2>
-            <p>Identifique-se e selecione as fotos ou vídeos da Turma 198</p>
+        <div class="modal-content">
+            <span id="btnFecharModalUpload" class="close">&times;</span>
+            
+            <div class="modal-header">
+                <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color: #dfb119;"></i>
+                <h2>ÁREA DE ENVIOS</h2>
+                <p>Identifique-se e selecione as fotos ou vídeos da Turma 198</p>
+            </div>
+
+            <form id="formUpload">
+                <input type="hidden" id="uploadTipoOrigem" value="">
+
+                <div class="form-group">
+                    <label for="uploadNomeGuerra"><i class="fa-solid fa-user"></i> Nome de Guerra:</label>
+                    <input type="text" id="uploadNomeGuerra" required placeholder="Ex: Sgt Silva">
+                </div>
+
+                <div class="form-group">
+                    <label for="uploadMilhaoVisual"><i class="fa-solid fa-id-card"></i> Número do Milhão:</label>
+                    <!-- Campo estético mascarado (Ex: 91-1515) e travado para edição -->
+                    <input type="text" id="uploadMilhaoVisual" disabled style="opacity: 0.85; background: #0f172a; color: #dfb119; font-weight: bold;">
+                    <!-- Campo oculto que envia o dado puro e limpo ao banco de dados -->
+                    <input type="hidden" id="uploadMilhao" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="uploadDescricao"><i class="fa-solid fa-comment-dots"></i> Descrição Breve:</label>
+                    <textarea id="uploadDescricao" rows="2" required placeholder="Ex: Foto da formatura no pátio principal, churrasco da turma..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="uploadArquivo"><i class="fa-solid fa-file-image"></i> Selecione os Arquivos:</label>
+                    <!-- Atributo MULTIPLE ativado para permitir seleção em lote -->
+                    <input type="file" id="uploadArquivo" accept="image/*,video/*" multiple required>
+                    <small style="color: #bbb; display: block; margin-top: 5px;">
+                        Você pode selecionar vários de uma vez! <br>
+                        <strong>Limites:</strong> Máximo de 5 fotos OU 2 vídeos por envio.
+                    </small>
+                </div>
+
+                <div id="areaProgresso" style="display: none; margin-top: 15px; background: #0f172a; border: 1px solid #4a5568; border-radius: 5px; overflow: hidden;">
+                    <div id="barraProgresso" style="width: 0%; height: 22px; background: #dfb119; text-align: center; color: #1a233a; font-weight: bold; font-size: 12px; line-height: 22px; transition: width 0.2s;">0%</div>
+                </div>
+
+                <button type="submit" id="btnEnviarUpload" class="btn-submit" style="margin-top: 15px;">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar para o Drive
+                </button>
+            </form>
         </div>
-
-        <form id="formUpload">
-            <input type="hidden" id="uploadTipoOrigem" value="">
-
-            <div class="form-group">
-                <label for="uploadNomeGuerra"><i class="fa-solid fa-user"></i> Nome de Guerra:</label>
-                <input type="text" id="uploadNomeGuerra" required placeholder="Ex: Sgt Silva">
-            </div>
-
-            <div class="form-group">
-                <label for="uploadMilhao"><i class="fa-solid fa-id-card"></i> Número do Milhão:</label>
-                <input type="number" id="uploadMilhao" required placeholder="Digite seu milhão novamente">
-            </div>
-
-            <div class="form-group">
-                <label for="uploadDescricao"><i class="fa-solid fa-comment-dots"></i> Descrição Breve:</label>
-                <textarea id="uploadDescricao" rows="2" required placeholder="Ex: Foto da formatura no pátio principal, churrasco da turma..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="uploadArquivo"><i class="fa-solid fa-file-image"></i> Selecione o Arquivo (Foto ou Vídeo):</label>
-                <input type="file" id="uploadArquivo" accept="image/*,video/*" required>
-                <small style="color: #bbb; display: block; margin-top: 5px;">Formatos aceitos: JPG, PNG, MP4, MOV, etc.</small>
-            </div>
-
-            <div id="areaProgresso" style="display: none; margin-top: 15px; background: #333; border-radius: 5px; overflow: hidden;">
-                <div id="barraProgresso" style="width: 0%; height: 20px; background: #ffc107; text-align: center; color: #000; font-weight: bold; font-size: 12px; line-height: 20px; transition: width 0.3s;">0%</div>
-            </div>
-
-            <button type="submit" id="btnEnviarUpload" class="btn-submit">
-                <i class="fa-solid fa-paper-plane"></i> Enviar para o Drive
-            </button>
-        </form>
     </div>
-</div>
 
+    <!-- SCRIPTS DA PÁGINA -->
     <script src="./js/script.js"></script>
-
-    <script src="./js/validacao.js?v=1.1"></script>
+    <script src="./js/validacao.js?v=1.2"></script>
 
 </body>
 </html>
