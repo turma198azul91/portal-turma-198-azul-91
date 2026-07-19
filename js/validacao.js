@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbw5XgdNcoep37WHX_Y3tSq_Acc2rTccLnCBpxmhzWvPUCzrdJz2cBjSSnOOHZPOkQeD/exec";
+    const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbymixZpmncVhZi-y3SyNpyFI-J-7zDEncWzS9rvUXcDs0d7PrYR4djSHlwrPNWIGVdV/exec";
 
     // Elementos do Modal 1: Validação
     const modalValidacao = document.getElementById("modalValidacao");
