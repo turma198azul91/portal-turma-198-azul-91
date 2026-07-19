@@ -110,14 +110,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                     formUpload.reset();
                     
-                    // Alimenta o campo oculto (com o número puro) e o visual (com a máscara)
                     document.getElementById("uploadMilhao").value = milhao;
                     document.getElementById("uploadMilhaoVisual").value = formatarMilhao(milhao);
                     
                     areaProgresso.style.display = "none";
                     barraProgresso.style.width = "0%";
                     
-                    // Correção de centralização forçando a exibição flexível e alinhada
                     modalUpload.style.setProperty("display", "flex", "important");
                 } 
                 else if (respostaReal.status === "BLOQUEADO_ATIVO") {
@@ -127,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 else {
                     if (!respostaReal.milhaoValido) {
                         modalValidacao.style.display = "none";
-                        alert("Usuário bloqueado. Contate o administrador!");
+                        alert("Usuário CLI bloqueado. Contate o administrador!");
                     } else {
                         alert("Usuário bloqueado. Contate o administrador!");
                         modalValidacao.style.display = "none";
@@ -144,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 
-    // SUBMIT DO FORMULÁRIO DE UPLOAD (MÚLTIPLOS ARQUIVOS SEQUENCIAIS)
+    // SUBMIT DO FORMULÁRIO DE UPLOAD (MÚLTIPLOS ARQUIVOS SEQUENCIAIS - FORMATO PARAMETRIZADO)
     formUpload.addEventListener("submit", function(e) {
         e.preventDefault();
 
@@ -152,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const listaArquivos = arquivoInput.files;
         if (listaArquivos.length === 0) return;
 
-        // Validação inteligente de quantidade e tipos
         let qtdFotos = 0;
         let qtdVideos = 0;
 
@@ -182,10 +179,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let indiceAtual = 0;
 
-        // Função interna para ler e enviar um arquivo por vez de forma assíncrona
         function enviarProximoArquivo() {
             if (indiceAtual >= listaArquivos.length) {
-                // Todos os arquivos foram processados com sucesso
                 barraProgresso.style.width = "100%";
                 barraProgresso.innerText = "100% Concluído!";
                 setTimeout(() => {
@@ -210,21 +205,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 barraProgresso.style.width = "75%";
                 barraProgresso.innerText = `[${numExibicao}/${listaArquivos.length}] Subindo para o Drive...`;
 
-                const dadosForm = {
-                    nomeGuerra: nomeGuerra,
-                    milhao: milhao,
-                    descricao: descricao,
-                    nomeArquivo: arquivo.name,
-                    tipoMime: arquivo.type,
-                    base64: rawBase64
-                };
+                // Monta os dados estruturados em URLSearchParams para evitar o Erro 500
+                const dadosForm = new URLSearchParams();
+                dadosForm.append("nomeGuerra", nomeGuerra);
+                dadosForm.append("milhao", milhao);
+                dadosForm.append("descricao", descricao);
+                dadosForm.append("nomeArquivo", arquivo.name);
+                dadosForm.append("tipoMime", arquivo.type);
+                dadosForm.append("base64", rawBase64);
 
                 fetch(URL_SCRIPT_GOOGLE, {
                     method: "POST",
                     mode: "no-cors",
-                    body: JSON.stringify(dadosForm)
+                    body: dadosForm
                 })
-                .then(res => {
+                .then(() => {
                     indiceAtual++;
                     enviarProximoArquivo();
                 })
@@ -232,14 +227,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.error(err);
                     btnEnviarUpload.disabled = false;
                     btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
-                    alert(`O envio travou no arquivo: ${arquivo.name}.\nMotivo: Verifique a conexão ou tamanho do arquivo.`);
+                    alert(`O envio travou no arquivo: ${arquivo.name}.`);
                 });
             };
 
             leitor.readAsDataURL(arquivo);
         }
 
-        // Inicia a cadeia de envios com o primeiro item selecionado
         enviarProximoArquivo();
     });
 });
