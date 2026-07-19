@@ -1,25 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
     const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbx-bdGLvhe9bIAd9pxif3sQ1MCifJnlV-KTUDMkyHXQvVAVmii2O6rHfrjPLUxI-w-f/exec";
 
-    const modal = document.getElementById("modalValidacao");
-    const btnFechar = document.getElementById("btnFecharModal");
+    // Elementos do Modal 1: Validação
+    const modalValidacao = document.getElementById("modalValidacao");
+    const btnFecharValidacao = document.getElementById("btnFecharModal");
     const formValidacao = document.getElementById("formValidacao");
     const textoPergunta = document.getElementById("modalTextoPergunta");
     const idPerguntaInput = document.getElementById("modalIdPergunta");
     const msgErro = document.getElementById("modalMensagemErro");
-    const btnEnviar = document.getElementById("btnEnviarValidacao");
+    const btnEnviarValidacao = document.getElementById("btnEnviarValidacao");
+
+    // Elementos do Modal 2: Upload
+    const modalUpload = document.getElementById("modalUpload");
+    const btnFecharUpload = document.getElementById("btnFecharModalUpload");
+    const formUpload = document.getElementById("formUpload");
+    const btnEnviarUpload = document.getElementById("btnEnviarUpload");
+    const areaProgresso = document.getElementById("areaProgresso");
+    const barraProgresso = document.getElementById("barraProgresso");
 
     const botoesAdicionar = document.querySelectorAll('.btn-add');
 
-    // Força o nome do botão para apenas "Validar"
-    if (btnEnviar) {
-        btnEnviar.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
+    if (btnEnviarValidacao) {
+        btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
     }
 
     function carregarPerguntaAleatoria() {
         textoPergunta.innerText = "Carregando pergunta de segurança...";
         idPerguntaInput.value = "";
-        btnEnviar.disabled = true;
+        btnEnviarValidacao.disabled = true;
         msgErro.style.display = "none";
 
         fetch(URL_SCRIPT_GOOGLE)
@@ -27,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 idPerguntaInput.value = data.id;
                 textoPergunta.innerText = data.pergunta;
-                btnEnviar.disabled = false;
+                btnEnviarValidacao.disabled = false;
             })
             .catch(err => {
                 textoPergunta.innerText = "Falha ao conectar com o servidor da turma. Tente novamente.";
@@ -39,26 +47,37 @@ document.addEventListener("DOMContentLoaded", function() {
         botao.addEventListener("click", function(e) {
             e.preventDefault();
             formValidacao.reset();
-            modal.style.display = "flex";
+            modalValidacao.style.display = "flex";
             carregarPerguntaAleatoria();
         });
     });
 
-    btnFechar.addEventListener("click", function() {
-        modal.style.display = "none";
+    // Fechamento dos Modais
+    btnFecharValidacao.addEventListener("click", function() {
+        modalValidacao.style.display = "none";
     });
 
-    window.addEventListener("click", function(e) {
-        if (e.target === modal) {
-            modal.style.display = "none";
+    btnFecharUpload.addEventListener("click", function() {
+        if (!btnEnviarUpload.disabled) { // Impede fechar enquanto envia
+            modalUpload.style.display = "none";
         }
     });
 
+    window.addEventListener("click", function(e) {
+        if (e.target === modalValidacao) {
+            modalValidacao.style.display = "none";
+        }
+        if (e.target === modalUpload && !btnEnviarUpload.disabled) {
+            modalUpload.style.display = "none";
+        }
+    });
+
+    // SUBMIT DO FORMULÁRIO DE VALIDAÇÃO
     formValidacao.addEventListener("submit", function(e) {
         e.preventDefault();
 
-        btnEnviar.disabled = true;
-        btnEnviar.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Validando...';
+        btnEnviarValidacao.disabled = true;
+        btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Validando...';
         msgErro.style.display = "none";
 
         const milhao = document.getElementById("modalMilhao").value;
@@ -75,40 +94,104 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch(urlValidacao)
             .then(res => res.json())
             .then(respostaReal => {
-                btnEnviar.disabled = false;
-                btnEnviar.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
+                btnEnviarValidacao.disabled = false;
+                btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
 
                 if (respostaReal.status === "SUCESSO") {
-                    modal.style.display = "none";
-                    alert("Credenciais Confirmadas! Redirecionando para a área de upload...");
+                    modalValidacao.style.display = "none";
+                    
+                    // Sucesso total! Abre o modal de upload e pré-preenche o Milhão validado
+                    formUpload.reset();
+                    document.getElementById("uploadMilhao").value = milhao;
+                    areaProgresso.style.display = "none";
+                    barraProgresso.style.width = "0%";
+                    modalUpload.style.display = "flex";
                 } 
                 else if (respostaReal.status === "BLOQUEADO_ATIVO") {
-                    // Já está no castigo de 30 minutos: fecha direto e exibe o alerta (preservando o tempo)
-                    modal.style.display = "none";
+                    modalValidacao.style.display = "none";
                     alert("Usuário bloqueado. Contate o administrador!");
                 } 
                 else {
                     if (!respostaReal.milhaoValido) {
-                        // SITUAÇÃO 2 (Intruso): O Google já salvou o bloqueio no clique. Fecha e avisa.
-                        modal.style.display = "none";
+                        modalValidacao.style.display = "none";
                         alert("Usuário bloqueado. Contate o administrador!");
                     } else {
-                        // SITUAÇÃO 1 (Participante): Errou dados mas o Milhão é quente.
-                        // Mostra o alert primeiro; a contagem só inicia após clicar no "Ok".
                         alert("Usuário bloqueado. Contate o administrador!");
-                        modal.style.display = "none";
-                        
-                        // Notifica o Google para iniciar a gravação do cronômetro agora
+                        modalValidacao.style.display = "none";
                         fetch(URL_SCRIPT_GOOGLE + "?registrarBloqueioAposOk=" + encodeURIComponent(milhao));
                     }
                 }
             })
             .catch(err => {
                 console.error(err);
-                btnEnviar.disabled = false;
-                btnEnviar.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
-                modal.style.display = "none";
+                btnEnviarValidacao.disabled = false;
+                btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
+                modalValidacao.style.display = "none";
                 alert("Usuário bloqueado. Contate o administrador!");
             });
+    });
+
+    // SUBMIT DO FORMULÁRIO DE UPLOAD (Manda o arquivo em Base64 para o Drive)
+    formUpload.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const arquivoInput = document.getElementById("uploadArquivo");
+        if (arquivoInput.files.length === 0) return;
+
+        btnEnviarUpload.disabled = true;
+        btnEnviarUpload.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando arquivo...';
+        areaProgresso.style.display = "block";
+        barraProgresso.style.width = "50%"; // Progresso simulado de leitura
+        barraProgresso.innerText = "50% (Processando...)";
+
+        const arquivo = arquivoInput.files[0];
+        const leitor = new FileReader();
+
+        leitor.onload = function(evento) {
+            const rawBase64 = evento.target.result.split(',')[1];
+            
+            barraProgresso.style.width = "80%";
+            barraProgresso.innerText = "80% (Subindo para o Drive...)";
+
+            // Monta os dados adicionais que você pediu
+            const dadosForm = {
+                nomeGuerra: document.getElementById("uploadNomeGuerra").value,
+                milhao: document.getElementById("uploadMilhao").value,
+                descricao: document.getElementById("uploadDescricao").value,
+                nomeArquivo: arquivo.name,
+                tipoMime: arquivo.type,
+                base64: rawBase64
+            };
+
+            // Envia via POST (Necessário para carregar arquivos grandes)
+            fetch(URL_SCRIPT_GOOGLE, {
+                method: "POST",
+                body: JSON.stringify(dadosForm)
+            })
+            .then(res => res.json())
+            .then(respostaDrive => {
+                btnEnviarUpload.disabled = false;
+                btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
+
+                if (respostaDrive.status === "SUCESSO") {
+                    barraProgresso.style.width = "100%";
+                    barraProgresso.innerText = "100% Concluído!";
+                    setTimeout(() => {
+                        modalUpload.style.display = "none";
+                        alert("Arquivo enviado com sucesso para a Turma 198!");
+                    }, 500);
+                } else {
+                    alert("Erro ao enviar: " + respostaDrive.mensagem);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                btnEnviarUpload.disabled = false;
+                btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
+                alert("Erro de conexão ao tentar subir o arquivo. Tente novamente.");
+            });
+        };
+
+        leitor.readAsDataURL(arquivo);
     });
 });

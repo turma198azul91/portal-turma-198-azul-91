@@ -98,6 +98,51 @@
     </div>
 </div>
 
+    <div id="modalUpload" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="btnFecharModalUpload" class="close">&times;</span>
+        
+        <div class="modal-header">
+            <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color: #ffc107;"></i>
+            <h2>ÁREA DE ENVIOS</h2>
+            <p>Identifique-se e selecione as fotos ou vídeos da Turma 198</p>
+        </div>
+
+        <form id="formUpload">
+            <input type="hidden" id="uploadTipoOrigem" value="">
+
+            <div class="form-group">
+                <label for="uploadNomeGuerra"><i class="fa-solid fa-user"></i> Nome de Guerra:</label>
+                <input type="text" id="uploadNomeGuerra" required placeholder="Ex: Sgt Silva">
+            </div>
+
+            <div class="form-group">
+                <label for="uploadMilhao"><i class="fa-solid fa-id-card"></i> Número do Milhão:</label>
+                <input type="number" id="uploadMilhao" required placeholder="Digite seu milhão novamente">
+            </div>
+
+            <div class="form-group">
+                <label for="uploadDescricao"><i class="fa-solid fa-comment-dots"></i> Descrição Breve:</label>
+                <textarea id="uploadDescricao" rows="2" required placeholder="Ex: Foto da formatura no pátio principal, churrasco da turma..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="uploadArquivo"><i class="fa-solid fa-file-image"></i> Selecione o Arquivo (Foto ou Vídeo):</label>
+                <input type="file" id="uploadArquivo" accept="image/*,video/*" required>
+                <small style="color: #bbb; display: block; margin-top: 5px;">Formatos aceitos: JPG, PNG, MP4, MOV, etc.</small>
+            </div>
+
+            <div id="areaProgresso" style="display: none; margin-top: 15px; background: #333; border-radius: 5px; overflow: hidden;">
+                <div id="barraProgresso" style="width: 0%; height: 20px; background: #ffc107; text-align: center; color: #000; font-weight: bold; font-size: 12px; line-height: 20px; transition: width 0.3s;">0%</div>
+            </div>
+
+            <button type="submit" id="btnEnviarUpload" class="btn-submit">
+                <i class="fa-solid fa-paper-plane"></i> Enviar para o Drive
+            </button>
+        </form>
+    </div>
+</div>
+
     <script src="./js/script.js"></script>
 
     <script src="./js/validacao.js?v=1.1"></script>
