@@ -221,22 +221,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 fetch(URL_SCRIPT_GOOGLE, {
                     method: "POST",
+                    mode: "no-cors",
                     body: JSON.stringify(dadosForm)
                 })
-                .then(res => res.json())
-                .then(respostaDrive => {
-                    if (respostaDrive.status === "SUCESSO") {
-                        indiceAtual++;
-                        enviarProximoArquivo(); // Avança para o próximo arquivo da fila
-                    } else {
-                        throw new Error(respostaDrive.mensagem || "Erro desconhecido no servidor.");
-                    }
+                .then(res => {
+                    indiceAtual++;
+                    enviarProximoArquivo();
                 })
                 .catch(err => {
                     console.error(err);
                     btnEnviarUpload.disabled = false;
                     btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
-                    alert(`O envio travou no arquivo: ${arquivo.name}.\nMotivo: ${err.message || "Erro de conexão"}`);
+                    alert(`O envio travou no arquivo: ${arquivo.name}.\nMotivo: Verifique a conexão ou tamanho do arquivo.`);
                 });
             };
 
