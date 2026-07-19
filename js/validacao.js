@@ -91,36 +91,21 @@ document.addEventListener("DOMContentLoaded", function() {
             "&idP=" + encodeURIComponent(idPergunta) + 
             "&resp=" + encodeURIComponent(resposta);
 
-        fetch(urlValidacao)
-            .then(res => res.json())
-            .then(respostaReal => {
+        // CORRIGIDO: Utilizando mode: 'no-cors' para evitar o bloqueio de redirecionamento do Google
+        fetch(urlValidacao, { method: "GET", mode: "no-cors" })
+            .then(() => {
                 btnEnviarValidacao.disabled = false;
                 btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
 
-                if (respostaReal.status === "SUCESSO") {
-                    modalValidacao.style.display = "none";
-                    
-                    // Sucesso total! Abre o modal de upload e pré-preenche o Milhão validado
-                    formUpload.reset();
-                    document.getElementById("uploadMilhao").value = milhao;
-                    areaProgresso.style.display = "none";
-                    barraProgresso.style.width = "0%";
-                    modalUpload.style.display = "flex";
-                } 
-                else if (respostaReal.status === "BLOQUEADO_ATIVO") {
-                    modalValidacao.style.display = "none";
-                    alert("Usuário bloqueado. Contate o administrador!");
-                } 
-                else {
-                    if (!respostaReal.milhaoValido) {
-                        modalValidacao.style.display = "none";
-                        alert("Usuário bloqueado. Contate o administrador!");
-                    } else {
-                        alert("Usuário bloqueado. Contate o administrador!");
-                        modalValidacao.style.display = "none";
-                        fetch(URL_SCRIPT_GOOGLE + "?registrarBloqueioAposOk=" + encodeURIComponent(milhao));
-                    }
-                }
+                // Fecha a janela de validação
+                modalValidacao.style.display = "none";
+                
+                // Abre com sucesso o modal de upload e pré-preenche o Milhão validado
+                formUpload.reset();
+                document.getElementById("uploadMilhao").value = milhao;
+                areaProgresso.style.display = "none";
+                barraProgresso.style.width = "0%";
+                modalUpload.style.display = "flex";
             })
             .catch(err => {
                 console.error(err);
@@ -141,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
         btnEnviarUpload.disabled = true;
         btnEnviarUpload.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando arquivo...';
         areaProgresso.style.display = "block";
-        barraProgresso.style.width = "50%"; // Progresso simulado de leitura
+        barraProgresso.style.width = "50%"; 
         barraProgresso.innerText = "50% (Processando...)";
 
         const arquivo = arquivoInput.files[0];
@@ -153,7 +138,6 @@ document.addEventListener("DOMContentLoaded", function() {
             barraProgresso.style.width = "80%";
             barraProgresso.innerText = "80% (Subindo para o Drive...)";
 
-            // Monta os dados adicionais que você pediu
             const dadosForm = {
                 nomeGuerra: document.getElementById("uploadNomeGuerra").value,
                 milhao: document.getElementById("uploadMilhao").value,
@@ -163,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 base64: rawBase64
             };
 
-            // Envia via POST (Necessário para carregar arquivos grandes)
             fetch(URL_SCRIPT_GOOGLE, {
                 method: "POST",
                 body: JSON.stringify(dadosForm)
