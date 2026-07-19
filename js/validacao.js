@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 
-    // SUBMIT DO FORMULÁRIO DE UPLOAD (MÚLTIPLOS ARQUIVOS SEQUENCIAIS - FORMATO PARAMETRIZADO)
+    // SUBMIT DO FORMULÁRIO DE UPLOAD (MÚLTIPLOS ARQUIVOS SEQUENCIAIS - FORMATO JSON)
     formUpload.addEventListener("submit", function(e) {
         e.preventDefault();
 
@@ -205,29 +205,34 @@ document.addEventListener("DOMContentLoaded", function() {
                 barraProgresso.style.width = "75%";
                 barraProgresso.innerText = `[${numExibicao}/${listaArquivos.length}] Subindo para o Drive...`;
 
-                // Monta os dados estruturados em URLSearchParams para evitar o Erro 500
-                const dadosForm = new URLSearchParams();
-                dadosForm.append("nomeGuerra", nomeGuerra);
-                dadosForm.append("milhao", milhao);
-                dadosForm.append("descricao", descricao);
-                dadosForm.append("nomeArquivo", arquivo.name);
-                dadosForm.append("tipoMime", arquivo.type);
-                dadosForm.append("base64", rawBase64);
-
                 fetch(URL_SCRIPT_GOOGLE, {
                     method: "POST",
-                    mode: "no-cors",
-                    body: dadosForm
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8"
+                    },
+                    body: JSON.stringify({
+                        nomeGuerra: nomeGuerra,
+                        milhao: milhao,
+                        descricao: descricao,
+                        nomeArquivo: arquivo.name,
+                        tipoMime: arquivo.type,
+                        base64: rawBase64
+                    })
                 })
-                .then(() => {
-                    indiceAtual++;
-                    enviarProximoArquivo();
+                .then(res => res.json())
+                .then(resultado => {
+                    if(resultado.status === "SUCESSO") {
+                        indiceAtual++;
+                        enviarProximoArquivo();
+                    } else {
+                        throw new Error(resultado.mensagem || "Erro interno do servidor Google");
+                    }
                 })
                 .catch(err => {
                     console.error(err);
                     btnEnviarUpload.disabled = false;
                     btnEnviarUpload.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar para o Drive';
-                    alert(`O envio travou no arquivo: ${arquivo.name}.`);
+                    alert(`O envio travou no arquivo: ${arquivo.name}. Erro: ${err.message}`);
                 });
             };
 
