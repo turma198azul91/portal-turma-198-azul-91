@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     btnFecharUpload.addEventListener("click", function() {
-        if (!btnEnviarUpload.disabled) { // Impede fechar enquanto envia
+        if (!btnEnviarUpload.disabled) { 
             modalUpload.style.display = "none";
         }
     });
@@ -91,21 +91,37 @@ document.addEventListener("DOMContentLoaded", function() {
             "&idP=" + encodeURIComponent(idPergunta) + 
             "&resp=" + encodeURIComponent(resposta);
 
-        // CORRIGIDO: Utilizando mode: 'no-cors' para evitar o bloqueio de redirecionamento do Google
-        fetch(urlValidacao, { method: "GET", mode: "no-cors" })
-            .then(() => {
+        fetch(urlValidacao)
+            .then(res => res.json())
+            .then(respostaReal => {
                 btnEnviarValidacao.disabled = false;
                 btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
 
-                // Fecha a janela de validação
-                modalValidacao.style.display = "none";
-                
-                // Abre com sucesso o modal de upload e pré-preenche o Milhão validado
-                formUpload.reset();
-                document.getElementById("uploadMilhao").value = milhao;
-                areaProgresso.style.display = "none";
-                barraProgresso.style.width = "0%";
-                modalUpload.style.display = "flex";
+                if (respostaReal.status === "SUCESSO") {
+                    modalValidacao.style.display = "none";
+                    
+                    formUpload.reset();
+                    document.getElementById("uploadMilhao").value = milhao;
+                    areaProgresso.style.display = "none";
+                    barraProgresso.style.width = "0%";
+                    
+                    // CORREÇÃO: Altera display para 'block' forcando a exibição e adiciona visibilidade manual caso a classe esconda
+                    modalUpload.style.setProperty("display", "block", "important");
+                } 
+                else if (respostaReal.status === "BLOQUEADO_ATIVO") {
+                    modalValidacao.style.display = "none";
+                    alert("Usuário bloqueado. Contate o administrador!");
+                } 
+                else {
+                    if (!respostaReal.milhaoValido) {
+                        modalValidacao.style.display = "none";
+                        alert("Usuário bloqueado. Contate o administrador!");
+                    } else {
+                        alert("Usuário bloqueado. Contate o administrador!");
+                        modalValidacao.style.display = "none";
+                        fetch(URL_SCRIPT_GOOGLE + "?registrarBloqueioAposOk=" + encodeURIComponent(milhao));
+                    }
+                }
             })
             .catch(err => {
                 console.error(err);
@@ -116,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 
-    // SUBMIT DO FORMULÁRIO DE UPLOAD (Manda o arquivo em Base64 para o Drive)
+    // SUBMIT DO FORMULÁRIO DE UPLOAD
     formUpload.addEventListener("submit", function(e) {
         e.preventDefault();
 
