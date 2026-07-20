@@ -20,7 +20,18 @@ body, html { width: 100%; height: 100%; overflow: hidden; }
 .btn:hover { transform: translateY(-3px); background: #226bcf; }
 .btn-destaque { background: linear-gradient(135deg, #2d82ff, #1a5bb8) !important; border: 2px solid #ffffff !important; margin-left: 20px !important; box-shadow: 0 0 15px rgba(45, 130, 255, 0.5) !important; }
 
-.menu-toggle { display: none; position: absolute; right: 0; background: #0a3678; color: white; border: 1px solid #fff; padding: 8px; border-radius: 5px; cursor: pointer; z-index: 1000; }
+.menu-toggle { display: none; 
+    position: absolute; 
+    right: 20px;
+    top: 20px;
+    background: #0a3678; 
+    color: white; 
+    border: 1px solid #fff; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    z-index: 2000
+}
 
 .content.dimmed > *:not(.button-grid):not(.menu-toggle):not(.modal-validacao-container) { filter: blur(5px); opacity: 0.3; transition: 0.3s; }
 
@@ -33,5 +44,5 @@ body, html { width: 100%; height: 100%; overflow: hidden; }
     .button-grid { display: none; flex-direction: column; position: absolute; top: 80px; width: 90%; background: rgba(10, 34, 64, 0.95); padding: 20px; border-radius: 10px; border: 1px solid #fff; z-index: 999; align-items: center; }
     .button-grid.active { display: flex; }
     .btn { font-size: 0.75rem; padding: 6px 7px; width: 80%; margin-bottom: 5px; }
-    .btn-destaque { width: 80% !important; margin: 10px 0 0 0 !important; }
+    .btn-destaque { position: relative; z-index: 1001;width: 80% !important; margin: 10px 0 0 0 !important; }
 }
