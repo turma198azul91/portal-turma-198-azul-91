@@ -153,3 +153,8 @@ body, html {
     margin-top: 10px;
     opacity: 0.9;
 }
+
+#btnUnicoAdicionar {
+    position: relative;
+    z-index: 9999;
+}
