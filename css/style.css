@@ -88,3 +88,42 @@ body, html {
     -webkit-text-stroke: 1px #ffffff;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
 }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 30px; /* Espaço abaixo da estrela */
+    padding: 10px;
+    flex-wrap: wrap; /* Garante que quebre linha em telas menores */
+}
+
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #1b5cb8, #113d7a);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 16px; 
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 3px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #226bcf, #154c96);
+}
+
+.btn-destaque {
+    background: linear-gradient(135deg, #2d82ff, #1a5bb8) !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 0 15px rgba(45, 130, 255, 0.5) !important;
+}
