@@ -1,15 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
     const menuToggle = document.querySelector(".menu-toggle");
-    const buttonGrid = document.querySelector(".button-grid");
-    const content = document.querySelector(".content");
+    
+    const navMenu = document.querySelector(".button-grid") || document.querySelector(".navbar");
+    
+    const content = document.querySelector(".content") || document.querySelector(".content-wrapper");
 
-    if (menuToggle && buttonGrid) {
+    if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", function() {
-            buttonGrid.classList.toggle("active");
-            content.classList.toggle("dimmed"); // Adiciona o efeito de esmaecer o fundo
+            navMenu.classList.toggle("active");
+            
+            if (content) {
+                content.classList.toggle("dimmed");
+            }
             
             const icon = menuToggle.querySelector("i");
-            icon.className = buttonGrid.classList.contains("active") ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+            if (icon) {
+                icon.className = navMenu.classList.contains("active") ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+            }
         });
     }
 });
