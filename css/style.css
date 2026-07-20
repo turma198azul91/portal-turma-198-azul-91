@@ -117,9 +117,10 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     flex-wrap: wrap;
     margin-top: auto;
+    width: 100%;
 }
 
 .btn {
@@ -172,7 +173,10 @@ body, html {
 }
 
 .btn-add-start {
-    margin-left: 40px;
+    margin-left: 0 !important; /* Removi o margin-left que estava empurrando para fora */
+    background: linear-gradient(135deg, #dfb119, #b8860b) !important; /* Cor de destaque para o botão de upload */
+    color: #1a233a !important;
+    font-weight: bold !important;
 }
 
 .btn-add {
