@@ -79,7 +79,7 @@ body, html {
     color: #00e5ff; /* Um azul ciano brilhante, bem vivo */
     font-size: 2.2rem;
     margin-top: -10px;
-    animation: rotateStar 2s ease-in-out infinite alternate;
+    animation: oscillate 1.5s ease-in-out infinite alternate;
     cursor: default;
 }
 
