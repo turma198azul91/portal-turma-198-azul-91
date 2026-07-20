@@ -142,7 +142,14 @@ body, html {
 .description-container p {
     font-size: 1.5rem;
     line-height: 1.6;
-    color: #e0e0e0;
+    color: #f0f0f0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     font-weight: 600;
+}
+
+.sub-description {
+    display: block;
+    font-size: 1.3rem;
+    margin-top: 10px;
+    opacity: 0.9;
 }
