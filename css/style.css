@@ -63,15 +63,18 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
-@keyframes oscillate { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg);
+@keyframes oscillate { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg); } }
 
 .header-title h1 {
-    font-size: 3rem; font-weight: 900; color: #0a3678; -webkit-text-stroke: 1.5px #ffffff;
+    font-size: 3rem;
+    font-weight: 900; 
+    color: #0a3678;
+    -webkit-text-stroke: 1.5px #ffffff;
     
 }
 
 .star-separator {
-    color: #00008b;
+    color: #0a3678;
     font-size: 2rem;
     margin-top: 10px;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
