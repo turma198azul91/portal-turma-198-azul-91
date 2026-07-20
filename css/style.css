@@ -88,8 +88,3 @@ body, html {
     -webkit-text-stroke: 1px #ffffff;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
 }
-
-@keyframes rotateStar {
-    0% { transform: rotate(-10deg); }
-    100% { transform: rotate(10deg); }
-}
