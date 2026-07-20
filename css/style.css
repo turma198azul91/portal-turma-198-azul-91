@@ -68,19 +68,18 @@ body, html {
 .header-title h1 {
     font-size: 3.5rem;
     font-weight: 900;
-    color: #e0f7ff; /* Azul quase branco para brilhar */
-    -webkit-text-stroke: 1px #00aaff; /* Contorno em azul elétrico */
-    text-shadow: 0 0 15px #0077ff, 0 0 30px #0077ff, 2px 2px 5px rgba(0,0,0,0.5);
+    color: #ffffff; /* Branco puro para maior legibilidade */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.3);
     letter-spacing: 2px;
 }
 
-/* Estrela: Azul claro luminoso e translúcido */
+/* Estrela: Discreta, com tom azul profundo e movimento suave */
 .star-separator {
-    color: #00d4ff; /* Azul ciano vivo */
-    font-size: 2.5rem;
-    margin-top: 15px; /* Aproximamos do título como pedido */
-    text-shadow: 0 0 20px #00d4ff, 0 0 10px #ffffff;
-    animation: rotateStar 2s ease-in-out infinite alternate;
+    color: #5b7bb8; /* Azul sóbrio e harmonioso */
+    font-size: 2rem;
+    margin-top: 10px; /* Ajuste a gosto */
+    text-shadow: 0 0 8px rgba(91, 123, 184, 0.5); /* Brilho bem sutil */
+    animation: rotateStar 4s ease-in-out infinite alternate; /* Rotação mais lenta e calma */
     cursor: default;
 }
 
