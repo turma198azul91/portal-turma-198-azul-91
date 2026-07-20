@@ -1,17 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     const menuToggle = document.querySelector(".menu-toggle");
-    const navbar = document.querySelector(".navbar");
+    const buttonGrid = document.querySelector(".button-grid");
 
-    if (menuToggle && navbar) {
+    if (menuToggle && buttonGrid) {
         menuToggle.addEventListener("click", function() {
-            navbar.classList.toggle("active");
-            
+            buttonGrid.classList.toggle("active");
             const icon = menuToggle.querySelector("i");
-            if (navbar.classList.contains("active")) {
-                icon.className = "fa-solid fa-xmark";
-            } else {
-                icon.className = "fa-solid fa-bars";
-            }
+            icon.className = buttonGrid.classList.contains("active") ? "fa-solid fa-xmark" : "fa-solid fa-bars";
         });
     }
 });
