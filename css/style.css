@@ -76,7 +76,7 @@ body, html {
 
 .line {
     flex-grow: 1;
-    max-width: 250px;
+    max-width: 200px;
     height: 3px;
     background: linear-gradient(to right, transparent, #ffffff, #1b5cb8, #ffffff, transparent);
 }
