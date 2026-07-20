@@ -108,15 +108,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (respostaReal.status === "SUCESSO") {
                     modalValidacao.style.display = "none";
                     
-                    formUpload.reset();
+                    // URL do seu Google Forms (ajustada para remover o ?usp=preview)
+                    const urlGoogleForms = "https://docs.google.com/forms/d/e/1FAIpQLSdH26N2dwNmlSGiiQvI9Y5ExBzHNiHd79ONWh7C2CR59oFsdA/viewform";
                     
-                    document.getElementById("uploadMilhao").value = milhao;
-                    document.getElementById("uploadMilhaoVisual").value = formatarMilhao(milhao);
-                    
-                    areaProgresso.style.display = "none";
-                    barraProgresso.style.width = "0%";
-                    
-                    modalUpload.style.setProperty("display", "flex", "important");
+                    // Abre a página de upload em uma nova aba
+                    window.open(urlGoogleForms, '_blank');
                 } 
                 else if (respostaReal.status === "BLOQUEADO_ATIVO") {
                     modalValidacao.style.display = "none";
