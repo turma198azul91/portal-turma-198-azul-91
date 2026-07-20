@@ -9,149 +9,63 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-
     <main class="hero-container">
         <div class="overlay">
             <div class="content">
-                
                 <header class="header-title">
                     <img src="./assets/imagens/logoTurma.png" alt="Logo Turma 198 Azul 91" class="logo-turma">
                     <span class="line"></span>
                     <h1>TURMA 198 - AZUL 91</h1>
                     <span class="line"></span>
                 </header>
-
-                <div class="star-separator">
-                    <i class="fa-solid fa-star"></i>
-                </div>
-
+                <div class="star-separator"><i class="fa-solid fa-star"></i></div>
                 <p class="description">
                     Um espaço dedicado para preservar nossa história, compartilhar memórias inesquecíveis <br>
                     e reunir cada momento que marcou a trajetória da nossa turma rumo ao azul do firmamento. <br>
                     <span class="sub-description">Aqui, o nosso legado permanece vivo e compartilhado por todos nós.</span>
                 </p>
-
                 <nav class="button-grid">
-                    <a href="./historia.html" class="btn">
-                        <i class="fa-solid fa-book-open icon-yellow"></i> História
-                    </a>
-                    <a href="./painel.html" class="btn">
-                        <i class="fa-solid fa-chalkboard-user icon-yellow"></i> Painel
-                    </a>
-                    <a href="https://online.fliphtml5.com/zpngr/Revista-Azul-91/" class="btn" target="_blank">
-                        <i class="fa-solid fa-book-open-reader icon-yellow"></i> Revista
-                    </a>
-                    <a href="https://photos.app.goo.gl/VNbXAjiyZJ6a4twt6" class="btn" target="_blank">
-                        <i class="fa-solid fa-camera icon-yellow"></i> Fotos
-                    </a>
-                    <a href="https://www.youtube.com/playlist?list=PLeGY4RvXfUQw" class="btn" target="_blank">
-                        <i class="fa-solid fa-video icon-yellow"></i> Vídeos
-                    </a>
-                    <!-- BOTÃO ÚNICO NOVO -->
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdH26N2dwNmlSGiiQvI9Y5ExBzHNiHd79ONWh7C2CR59oFsdA/viewform?usp=preview" class="btn btn-add-novo" id="btnUnicoAdicionar">
-                        <i class="fa-solid fa-cloud-arrow-up icon-yellow"></i> Adicionar Mídia
-                    </a>
+                    <a href="./historia.html" class="btn"><i class="fa-solid fa-book-open"></i> História</a>
+                    <a href="./painel.html" class="btn"><i class="fa-solid fa-chalkboard-user"></i> Painel</a>
+                    <a href="https://online.fliphtml5.com/zpngr/Revista-Azul-91/" class="btn" target="_blank"><i class="fa-solid fa-book-open-reader"></i> Revista</a>
+                    <a href="./tarjetas.html" class="btn"><i class="fa-solid fa-address-card"></i> Tarjetas</a>
+                    <a href="https://photos.app.goo.gl/VNbXAjiyZJ6a4twt6" class="btn" target="_blank"><i class="fa-solid fa-camera"></i> Fotos</a>
+                    <a href="https://www.youtube.com/playlist?list=PLeGY4RvXfUQw" class="btn" target="_blank"><i class="fa-solid fa-video"></i> Vídeos</a>
+                    <a href="#" class="btn" id="btnUnicoAdicionar"><i class="fa-solid fa-cloud-arrow-up"></i> Adicionar Fotos/Vídeos</a>
                 </nav>
-
             </div>
         </div>
     </main>
 
-    <!-- MODAL 1: VALIDAÇÃO DE CREDENCIAIS -->
     <div id="modalValidacao" class="modal-validacao-container">
         <div class="modal-validacao-box">
             <button id="btnFecharModal" class="modal-validacao-fechar">&times;</button>
-            
             <div class="modal-validacao-header">
                 <i class="fa-solid fa-shield-halved"></i>
                 <h2>Acesso Restrito</h2>
-                <p>Confirme suas credenciais de integrante da Turma 198 para prosseguir.</p>
+                <p>Confirme suas credenciais para prosseguir.</p>
             </div>
-
             <form id="formValidacao" class="modal-validacao-form" autocomplete="off">
                 <input type="hidden" id="modalIdPergunta">
-
                 <div class="modal-campo-grupo">
                     <label for="modalMilhao"><i class="fa-solid fa-id-card"></i> Milhão</label>
                     <input type="text" id="modalMilhao" required inputmode="numeric" pattern="[0-9]*">
                 </div>
-
                 <div class="modal-campo-grupo">
                     <label for="modalSenha"><i class="fa-solid fa-lock"></i> Senha</label>
                     <input type="password" id="modalSenha" required>
                 </div>
-
                 <div class="modal-campo-grupo">
                     <label for="modalResposta"><i class="fa-solid fa-question"></i> Pergunta de Segurança</label>
-                    <div id="modalTextoPergunta" class="modal-pergunta-texto">Carregando pergunta de segurança...</div>
+                    <div id="modalTextoPergunta" class="modal-pergunta-texto">Carregando...</div>
                     <input type="text" id="modalResposta" required>
                 </div>
-
                 <div id="modalMensagemErro" class="modal-mensagem-erro"></div>
-
-                <button type="submit" id="btnEnviarValidacao" class="modal-btn-enviar">
-                    <i class="fa-solid fa-check"></i> Validar Credenciais
-                </button>
+                <button type="submit" id="btnEnviarValidacao" class="modal-btn-enviar"><i class="fa-solid fa-check"></i> Validar</button>
             </form>
         </div>
     </div>
-
-    <!-- MODAL 2: ÁREA DE UPLOAD (ATUALIZADO PARA MÚLTIPLOS) -->
-    <div id="modalUpload" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span id="btnFecharModalUpload" class="close">&times;</span>
-            
-            <div class="modal-header">
-                <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color: #dfb119;"></i>
-                <h2>ÁREA DE ENVIOS</h2>
-                <p>Identifique-se e selecione as fotos ou vídeos da Turma 198</p>
-            </div>
-
-            <form id="formUpload">
-                <input type="hidden" id="uploadTipoOrigem" value="">
-
-                <div class="form-group">
-                    <label for="uploadNomeGuerra"><i class="fa-solid fa-user"></i> Nome de Guerra:</label>
-                    <input type="text" id="uploadNomeGuerra" required placeholder="Ex: Sgt Silva">
-                </div>
-
-                <div class="form-group">
-                    <label for="uploadMilhaoVisual"><i class="fa-solid fa-id-card"></i> Número do Milhão:</label>
-                    <!-- Campo estético mascarado (Ex: 91-1515) e travado para edição -->
-                    <input type="text" id="uploadMilhaoVisual" disabled style="opacity: 0.85; background: #0f172a; color: #dfb119; font-weight: bold;">
-                    <!-- Campo oculto que envia o dado puro e limpo ao banco de dados -->
-                    <input type="hidden" id="uploadMilhao" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="uploadDescricao"><i class="fa-solid fa-comment-dots"></i> Descrição Breve:</label>
-                    <textarea id="uploadDescricao" rows="2" required placeholder="Ex: Foto da formatura no pátio principal, churrasco da turma..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="uploadArquivo"><i class="fa-solid fa-file-image"></i> Selecione os Arquivos:</label>
-                    <!-- Atributo MULTIPLE ativado para permitir seleção em lote -->
-                    <input type="file" id="uploadArquivo" accept="image/*,video/*" multiple required>
-                    <small style="color: #bbb; display: block; margin-top: 5px;">
-                        Você pode selecionar vários de uma vez! <br>
-                        <strong>Limites:</strong> Máximo de 5 fotos OU 2 vídeos por envio.
-                    </small>
-                </div>
-
-                <div id="areaProgresso" style="display: none; margin-top: 15px; background: #0f172a; border: 1px solid #4a5568; border-radius: 5px; overflow: hidden;">
-                    <div id="barraProgresso" style="width: 0%; height: 22px; background: #dfb119; text-align: center; color: #1a233a; font-weight: bold; font-size: 12px; line-height: 22px; transition: width 0.2s;">0%</div>
-                </div>
-
-                <button type="submit" id="btnEnviarUpload" class="btn-submit" style="margin-top: 15px;">
-                    <i class="fa-solid fa-paper-plane"></i> Enviar para o Drive
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- SCRIPTS DA PÁGINA -->
     <script src="./js/script.js"></script>
     <script src="./js/validacao.js?v=1.3"></script>
-
 </body>
 </html>
