@@ -76,10 +76,14 @@ body, html {
 }
 
 .star-separator {
-    color: #4da6ff; /* Azul mais claro que destaca do fundo */
-    font-size: 2rem;
-    margin-top: -15px; /* Puxa para mais perto do título */
-    /* Brilho suave que não compete com o título */
-    text-shadow: 0 0 15px rgba(77, 166, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    color: #00e5ff; /* Um azul ciano brilhante, bem vivo */
+    font-size: 2.2rem;
+    margin-top: -15px;
+    animation: rotateStar 2s ease-in-out infinite alternate;
+    cursor: default;
+}
+
+@keyframes rotateStar {
+    0% { transform: rotate(-180deg); }
+    100% { transform: rotate(180deg); }
 }
