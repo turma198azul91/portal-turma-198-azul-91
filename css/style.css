@@ -66,16 +66,20 @@ body, html {
 @keyframes oscillate { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg); } }
 
 .header-title h1 {
-    font-size: 3rem;
-    font-weight: 900; 
-    color: #0a3678;
-    -webkit-text-stroke: 1.5px #ffffff;
+    font-size: 3.5rem;
+    font-weight: 900;
+    /* Azul vibrante com contorno branco para dar leitura sobre a imagem */
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 10px #1e90ff;
+    letter-spacing: 2px;
     
 }
 
 .star-separator {
-    color: #4379ca;
+    color: #4da6ff; /* Azul mais claro que destaca do fundo */
     font-size: 2rem;
-    margin-top: 10px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    margin-top: -15px; /* Puxa para mais perto do título */
+    /* Brilho suave que não compete com o título */
+    text-shadow: 0 0 15px rgba(77, 166, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
 }
