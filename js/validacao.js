@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbwi4tURTbxEkAQlShzb8zbtiNtABlg4M7ia6yINWWZEZkEfNzYDksDZAINEZzI0DzCn/exec";
+    const URL_SCRIPT_GOOGLE = "https://script.google.com/macros/s/AKfycbxECF41_kBjztmwdSqSEXD7oZ4GMyl3ESgHrreQZSdl2uHtH_60h8Ln4-JUEy-erDYk/exec";
 
     // Elementos do Modal de Validação
     const modalValidacao = document.getElementById("modalValidacao");
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Redirecionamento para o seu Google Forms
                     window.open("https://docs.google.com/forms/d/e/1FAIpQLSdH26N2dwNmlSGiiQvI9Y5ExBzHNiHd79ONWh7C2CR59oFsdA/viewform", '_blank');
                 } else {
-                    alert("Usuário bloqueado ou dados incorretos!");
+                    alert("Usuário bloqueado. Contate o administrador!");
                 }
                 btnEnviarValidacao.disabled = false;
                 btnEnviarValidacao.innerHTML = 'Validar';
