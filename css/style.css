@@ -179,9 +179,11 @@ body, html {
     font-weight: bold !important;
 }
 
-.btn-add {
-    background: linear-gradient(135deg, #226bcf, #1b5cb8);
-    border-color: rgba(255, 255, 255, 0.6);
+.btn-add-novo {
+    background: linear-gradient(135deg, #dfb119, #b8860b) !important;
+    color: #1a233a !important;
+    font-weight: bold !important;
+    margin-left: 10px;
 }
 
 @media (max-width: 992px) {
