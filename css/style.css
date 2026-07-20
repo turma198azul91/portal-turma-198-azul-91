@@ -49,7 +49,6 @@ body, html {
     width: 100%;
     position: relative;
     padding-top: 20px;
-    margin-bottom: 0;
 }
 
 .logo-turma {
@@ -74,6 +73,6 @@ body, html {
 .star-separator {
     color: #00008b;
     font-size: 2rem;
-    margin-top: -10px;
+    margin-top: 10px;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
