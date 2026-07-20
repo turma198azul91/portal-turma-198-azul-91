@@ -18,10 +18,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const areaProgresso = document.getElementById("areaProgresso");
     const barraProgresso = document.getElementById("barraProgresso");
 
-    const botoesAdicionar = document.querySelectorAll('.btn-add');
+    const btnAdicionarUnico = document.getElementById('btnUnicoAdicionar');
 
-    if (btnEnviarValidacao) {
-        btnEnviarValidacao.innerHTML = '<i class="fa-solid fa-check"></i> Validar';
+    if (btnAdicionarUnico) {
+        btnAdicionarUnico.addEventListener("click", function(e) {
+            e.preventDefault();
+            formValidacao.reset();
+            modalValidacao.style.display = "flex";
+            carregarPerguntaAleatoria();
+        });
     }
 
     // Função para formatar o milhão esteticamente (Ex: 911515 -> 91-1515)
