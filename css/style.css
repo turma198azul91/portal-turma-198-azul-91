@@ -299,14 +299,13 @@ body, html {
 
 @media screen and (max-width: 768px) {
 
-    /* Trava o scroll da página inteira para evitar barras indesejadas */
+    /* Trava o scroll da página inteira no mobile */
     html, body {
         width: 100%;
         height: 100vh;
         overflow: hidden;
         margin: 0;
         padding: 0;
-        position: relative;
     }
 
     .hero-container, .overlay {
@@ -329,18 +328,18 @@ body, html {
         padding-top: 15px;
     }
 
-    /* 1. Logotipo reduzido e fixado no canto superior esquerdo */
+    /* 1. LOGOTIPO: Menor e posicionado no canto superior esquerdo */
     .logo-turma {
         position: absolute;
-        top: 12px;
+        top: 15px;
         left: 15px;
-        width: 42px;
+        width: 38px;
         height: auto;
         margin: 0;
         z-index: 10;
     }
 
-    /* 4. Ícone do Menu Toggle (Hamburger) fixado no canto superior direito */
+    /* 4. MENU HAMBURGER: Posicionado no canto superior direito */
     .menu-toggle {
         display: flex !important;
         position: absolute;
@@ -349,54 +348,53 @@ body, html {
         background: transparent;
         border: none;
         color: #ffffff;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         cursor: pointer;
         z-index: 1100;
         padding: 5px;
     }
 
-    /* 2. Título centralizado no topo (com quebra em duas linhas e sem hífen central) */
+    /* 2. TÍTULO: Centralizado no topo (separado da logo e do menu) */
     .header-title {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
         margin: 0 auto 5px auto;
-        max-width: 75%; /* Deixa espaço livre nas laterais para a logo e o menu */
+        max-width: 75%; /* Garante espaço para a logo na esquerda e o menu na direita */
     }
 
     .header-title h1 {
-        font-size: 1.15rem;
+        font-size: 1.05rem; /* Fonte reduzida para caber perfeitamente */
         line-height: 1.25;
         text-align: center;
-        word-spacing: 2px;
     }
 
-    /* Oculta as linhas decorativas laterais do título */
+    /* Oculta as linhas decorativas laterais do título no mobile */
     .header-title .line {
         display: none; 
     }
 
-    /* Força a quebra limpa entre "Turma 198" e "Azul 91" limpando o hífen */
+    /* Quebra o título em duas linhas de forma limpa */
     .header-title h1::after {
         content: "";
         display: block;
         margin-top: 2px;
     }
 
-    /* 3. Estrela logo abaixo do título, centralizada e proporcional */
+    /* 3. ESTRELA: Logo abaixo do título, centralizada e com a cor original */
     .star-separator {
-        margin: 0 0 10px 0;
+        margin: 2px 0 10px 0;
     }
 
     .star-separator i {
-        font-size: 0.85rem;
-        color: #ffcc00;
+        font-size: 0.8rem;
+        color: inherit; /* Resgata a cor original configurada no desktop */
     }
 
-    /* 4. Menu Dropdown expandido centralizado ocupando boa parte da tela */
+    /* MENU DROPDOWN EXPANDIDO (Centralizado na tela) */
     .navbar {
-        display: none; /* Recolhido por padrão */
+        display: none;
         flex-direction: column;
         position: fixed;
         top: 50%;
@@ -405,7 +403,7 @@ body, html {
         width: 85%;
         max-width: 320px;
         max-height: 80vh;
-        background: rgba(11, 19, 43, 0.95); /* Fundo translúcido sutil e elegante */
+        background: rgba(11, 19, 43, 0.95);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
@@ -416,21 +414,8 @@ body, html {
         overflow-y: auto;
     }
 
-    /* Quando ativado pelo script.js */
     .navbar.active {
         display: flex;
-    }
-
-    /* Botão interno de fechar (X) dentro do menu expandido */
-    .menu-fechar-mobile {
-        position: absolute;
-        top: 12px;
-        right: 15px;
-        background: transparent;
-        border: none;
-        color: #ffffff;
-        font-size: 1.4rem;
-        cursor: pointer;
     }
 
     .btn-nav {
@@ -443,34 +428,34 @@ body, html {
         border-radius: 6px;
     }
 
-    /* 5. Texto descritivo centralizado, sem background, fonte ligeiramente maior e legível */
+    /* 5. TEXTO: Centralizado, sem background, fonte legível */
     .description-container {
         width: 90%;
         max-width: 380px;
         padding: 5px;
         margin: 5px auto 0 auto;
-        background: transparent !important; /* Retira totalmente o background */
+        background: transparent !important;
         border: none !important;
         box-shadow: none !important;
     }
 
     .description-container p {
-        font-size: 0.88rem; /* Aumentado levemente para melhorar a leitura */
-        line-height: 1.4;
+        font-size: 0.85rem;
+        line-height: 1.35;
         text-align: center;
         color: #f0f0f0;
         margin: 0;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); /* Garante leitura nítida sobre a foto de fundo */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
     }
 
     .sub-description {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         display: block;
-        margin-top: 5px;
+        margin-top: 4px;
         color: #d0d0d0;
     }
 
-    /* 6. Modal de Validação Ajustado para Mobile */
+    /* MODAL DE VALIDAÇÃO MOBILE */
     .modal-validacao-container {
         padding: 10px;
         align-items: center;
@@ -483,14 +468,5 @@ body, html {
         max-height: 85vh;
         overflow-y: auto;
         border-radius: 10px;
-    }
-
-    .modal-validacao-header h2 {
-        font-size: 1.1rem;
-    }
-
-    .modal-campo-grupo input {
-        padding: 8px;
-        font-size: 0.9rem;
     }
 }
