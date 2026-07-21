@@ -334,7 +334,7 @@ body, html {
     .logo-turma {
         position: absolute;
         top: 5px;
-        left: -5px;
+        left: -50px;
         width: 20px;
         height: auto;
         margin: 0;
@@ -441,7 +441,7 @@ body, html {
     }
 
     .description-container p {
-        font-size: 0.75rem;                 /* Tamanho de fonte legível */
+        font-size: 0.85rem;                 /* Tamanho de fonte legível */
         line-height: 1.4;
         text-align: justify;                 /* Centraliza o texto */
         color: #ffffff;                     /* Texto branco para destacar na foto */
@@ -449,7 +449,7 @@ body, html {
     }
 
     .sub-description {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
         display: block;
         margin-top: 4px;
         color: transparent;
