@@ -1,0 +1,838 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: #0a2240;
+    overflow: hidden;
+}
+
+.hero-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../assets/imagens/entradaEEAR.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 34, 64, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 98%;
+    max-width: 1800px;
+    height: 98vh;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.header-title h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #0a3678;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1.5px #ffffff; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.line {
+    flex-grow: 1;
+    max-width: 250px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ffffff, #1b5cb8, #ffffff, transparent);
+}
+
+.star-separator {
+    color: #0a3678;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    -webkit-text-stroke: 1px #ffffff;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
+}
+
+.icon-yellow {
+    color: #e5b842;
+    font-size: 1rem;
+}
+
+.menu-toggle {
+    display: none !important;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 12px;
+}
+
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #1b5cb8, #113d7a);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 16px; 
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 3px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    min-width: 130px; 
+    cursor: pointer;
+}
+
+.btn-nav:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #226bcf, #154c96);
+}
+
+.btn-gerar-tarjeta-nav {
+    margin-left: 20px;
+}
+
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    z-index: 10;
+}
+
+.logo-turma {
+    width: 60px;
+    height: auto;
+    animation: oscillate 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes oscillate {
+    0% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
+}
+
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.flash-circle {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0, 140, 255, 0.7), transparent 80%);
+    border-radius: 50%;
+    position: absolute;
+    animation: expand-flash 3s ease-out forwards;
+    z-index: 1;
+}
+
+@keyframes expand-flash {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(45);
+        opacity: 0;
+    }
+}
+
+.titulo {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    z-index: 2;
+}
+
+.letra {
+    font-size: 4.5rem;
+    color: #00ccff;
+    text-shadow: 0 0 10px #00ccff, 0 0 20px #0099cc;
+    opacity: 0;
+    transform: translate(0, 0);
+    animation: dispersar 1.2s ease-out, reagrupar 1s ease-in forwards, piscar 0.5s steps(2, end);
+    animation-delay: calc(var(--i) * 0.1s), calc(2.2s + var(--i) * 0.1s), calc(3.3s + var(--i) * 0.1s);
+}
+
+.letra-0 { --i: 0; }
+.letra-1 { --i: 1; }
+.letra-2 { --i: 2; }
+.letra-3 { --i: 3; }
+.letra-4 { --i: 4; }
+.letra-5 { --i: 5; }
+.letra-6 { --i: 6; }
+.letra-7 { --i: 7; }
+.letra-8 { --i: 8; }
+.letra-9 { --i: 9; }
+.letra-10 { --i: 10; }
+.letra-11 { --i: 11; }
+.letra-12 { --i: 12; }
+.letra-13 { --i: 13; }
+.letra-14 { --i: 14; }
+.letra-15 { --i: 15; }
+.letra-16 { --i: 16; }
+.letra-17 { --i: 17; }
+.letra-18 { --i: 18; }
+
+@keyframes dispersar {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(250px * cos(var(--i))), calc(250px * sin(var(--i))));
+        opacity: 0;
+    }
+}
+
+@keyframes reagrupar {
+    from {
+        transform: translate(calc(250px * cos(var(--i))), calc(250px * sin(var(--i))));
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes piscar {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+.popup {
+    color: #FFFFFF;
+    font-weight: 600;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    max-width: 90vw;
+    background-color: #87CEFA;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+}
+
+#popupUpload {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+}
+
+.popup form {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.popup label {
+    margin-bottom: 2px;
+    font-size: 0.9rem;
+    color: #0000FF;
+    font-weight: 600;
+}
+
+.popup input {
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    border: 2px solid #0000FF;
+    border-radius: 5px;
+    color: #0000FF;
+    background: #FFFFFF;
+    width: 100%;
+}
+
+.popup-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.popup-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0000FF;
+    text-align: left;
+    margin: 0 0 0.5rem 0;
+    align-self: flex-start;
+}
+
+.popup-icon {
+    width: 160px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.popup .close-btn {
+    font-size: 1.5rem;
+    color: #0000FF;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: none;
+    transition: transform 0.2s;
+}
+
+.popup .close-btn:hover {
+    transform: scale(1.2);
+}
+
+.botao-popup {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.botao-popup button {
+    background-color: #0000FF;
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+    width: 120px;
+    text-align: center;
+}
+
+.botao-popup button:hover {
+    background-color: #1E90FF;
+    color: #FFFFFF;
+}
+
+.milhao-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.milhao-prefixo {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0000FF;
+}
+
+.milhao-input {
+    width: 25% !important;
+    text-align: center;
+    font-weight: 900;
+}
+
+.tarjeta {
+    display: none;
+    width: 320px;
+    height: 57px;
+    background-color: #000080;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: scale(1.05);
+}
+
+.tarjeta-esquerda {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 12px;
+}
+
+.tarjeta-label,
+.tarjeta-milhao {
+    line-height: 1.2;
+}
+
+.tarjeta-direita {
+    width: 66.67%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.tarjeta-nome {
+    text-align: center;
+}
+
+#grito-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.miniatura-animada {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border: 10px solid #000080;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+.moeda-container {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    perspective: 600px;
+    z-index: 2;
+}
+
+.moeda {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.moeda-face {
+    position: absolute;
+    width: 170%;
+    height: 170%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    object-fit: cover;
+}
+
+.moeda-frente {
+    transform: rotateY(0deg);
+}
+
+.moeda-verso {
+    transform: rotateY(180deg);
+}
+
+.tarjeta-generica {
+    position: fixed;
+    background-color: #000080;
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 350px;
+    white-space: normal;
+    opacity: 1;
+    transition: opacity 1.2s ease;
+    pointer-events: none;
+    z-index: 9999;
+    text-align: center;
+}
+
+.tarjeta-final-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.tarjeta-final-container .tarjeta {
+    transform: scale(0.3) rotate(0deg);
+    transition: transform 0.4s ease;
+    animation: spinTarjeta 2.5s linear infinite;
+}
+
+@keyframes spinTarjeta {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+.tarjeta-loader {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 9999;
+}
+
+.tarjeta-loader p {
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #FFFFFF;
+    border-top: 5px solid #0000FF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ver-tarjeta-container {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+.botao-ver-tarjeta {
+    padding: 10px 24px;
+    font-weight: bold;
+    font-size: 1rem;
+    background-color: #0000FF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+    from {
+        box-shadow: 0 0 5px #00f;
+    }
+    to {
+        box-shadow: 0 0 20px #00f, 0 0 30px #00f;
+    }
+}
+
+.popup-tarjeta-grande {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85vw;
+    max-width: 500px;
+    height: auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    z-index: 10000;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.popup-tg-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.popup-tg-header {
+    background-color: #0033aa;
+    color: white;
+    padding: 12px 16px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botao-fechar-popup {
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+}
+
+.popup-tg-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+    background-color: #f9f9f9;
+    gap: 20px;
+}
+
+.tarjeta-grande {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    transform: none !important;
+    animation: none !important;
+    width: 320px !important;
+    height: 57px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+.botao-salvar-tarjeta {
+    background-color: #0033aa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95kr;
+    transition: background 0.3s;
+}
+
+.botao-salvar-tarjeta:hover {
+    background-color: #002277;
+}
+
+.preloader ~ * .menu-toggle,
+.menu-toggle {
+    display: none !important;
+}
+
+@media (max-width: 1024px) {
+    body, html {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+    .hero-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    .overlay {
+        height: auto;
+        min-height: 100vh;
+        align-items: flex-start;
+    }
+    .content-wrapper {
+        height: auto;
+        padding-top: 20px;
+    }
+
+    .logo-container {
+        display: block !important;
+    }
+    .logo-turma {
+        position: fixed !important;
+        top: 30px !important;
+        left: 15px !important;
+        width: 40px !important;
+        height: auto !important;
+        margin: 0 !important;
+        z-index: 9999 !important;
+        display: block !important;
+    }
+
+    .header-title {
+        position: relative;
+        margin-top: 5px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .header-title h1 {
+        font-size: 0;
+        -webkit-text-stroke: 0;
+        text-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .header-title h1::before {
+        content: "AZUL 91";
+    }
+
+    .header-title h1::after {
+        content: "TARJETA";
+    }
+    
+    .header-title h1::before, .header-title h1::after {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #0a3678;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 1.2px #ffffff; 
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .line {
+        display: none;
+    }
+
+    .star-separator {
+        margin: 5px 0 15px 0;
+        text-align: center;
+    }
+    .star-separator i {
+        font-size: 1.3rem;
+        color: inherit;
+    }
+
+    body.loaded .menu-toggle {
+        display: flex !important;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 999999 !important;
+        pointer-events: auto !important;
+    }
+    
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+
+    .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        padding: 15px 10px;
+        background: rgba(6, 21, 43, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+        z-index: 999998 !important;
+    }
+
+    .navbar.active {
+        display: flex !important;
+    }
+
+    .btn-nav {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .btn-gerar-tarjeta-nav {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .letra {
+          font-size: 1.6rem; /* Reduz o tamanho da fonte para caber na tela do celular */
+      }
+
+    .popup-tarjeta-grande {
+        width: 92vw;
+        max-width: 92vw;
+    }
+
+    .popup-tg-body {
+        padding: 15px 10px;
+    }
+
+    /* Reduz levemente a tarjeta no celular caso a tela seja muito estreita, mantendo a proporção */
+    .popup-tg-body .tarjeta {
+        transform: scale(1) !important;
+    }
+
+    .botao-ver-tarjeta {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-tg-header {
+        font-size: 1rem;
+        padding: 10px 12px;
+    }
+
+    .botao-salvar-tarjeta {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

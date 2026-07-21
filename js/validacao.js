@@ -10,17 +10,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnEnviarValidacao = document.getElementById("btnEnviarValidacao");
     const divMensagemErro = document.getElementById("modalMensagemErro");
 
-    // Botão único de disparo
+    // Botão de Adicionar Fotos/Vídeos (mantém a validação)
     const btnAdicionarUnico = document.getElementById('btnUnicoAdicionar');
 
     if (btnAdicionarUnico) {
         btnAdicionarUnico.addEventListener("click", function(e) {
             e.preventDefault();
-            formValidacao.reset();
-            divMensagemErro.innerHTML = ""; // Limpa erros anteriores
-            modalValidacao.style.display = "flex";
-            carregarPerguntaAleatoria();
+            abrirModalValidacao();
         });
+    }
+
+    function abrirModalValidacao() {
+        formValidacao.reset();
+        divMensagemErro.innerHTML = ""; // Limpa erros anteriores
+        btnEnviarValidacao.style.display = "block"; // Garante que o botão de enviar apareça
+        modalValidacao.style.display = "flex";
+        carregarPerguntaAleatoria();
     }
 
     function carregarPerguntaAleatoria() {
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Fechar ao clicar fora do modal (opcional, mas melhora a experiência)
+    // Fechar ao clicar fora do modal
     window.addEventListener("click", (e) => {
         if (e.target === modalValidacao) {
             modalValidacao.style.display = "none";
@@ -74,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Submit Validação
+    // Submit Validação (agora focado apenas no upload de fotos/vídeos)
     formValidacao.addEventListener("submit", function(e) {
         e.preventDefault();
         btnEnviarValidacao.disabled = true;
@@ -82,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
         divMensagemErro.innerHTML = "";
 
         const params = new URLSearchParams({
-            milhao: document.getElementById("modalMilhao").value,
+            milhao: document.getElementById("modalMilhao").value.trim(),
             senha: document.getElementById("modalSenha").value,
             idP: idPerguntaInput.value,
             resp: document.getElementById("modalResposta").value
@@ -93,10 +98,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(respostaReal => {
                 if (respostaReal.status === "SUCESSO") {
                     modalValidacao.style.display = "none";
-                    // Redirecionamento para o Google Forms de upload
+                    // Direciona direto para o formulário de upload
                     window.open("https://docs.google.com/forms/d/e/1FAIpQLSdH26N2dwNmlSGiiQvI9Y5ExBzHNiHd79ONWh7C2CR59oFsdA/viewform", '_blank');
                 } else {
-                    // Dispara a interface de bloqueio solicitada
                     mostrarMensagemBloqueio();
                 }
                 btnEnviarValidacao.disabled = false;
