@@ -58,6 +58,10 @@ body, html {
     animation: oscillate 1.5s ease-in-out infinite alternate;
 }
 
+.menu-toggle {
+        display: none !important;
+    }
+
 @keyframes oscillate {
     0% { transform: rotate(-10deg); }
     100% { transform: rotate(10deg); }
@@ -332,8 +336,8 @@ body, html {
     .logo-turma {
         position: absolute;
         top: 15px;
-        left: 15px;
-        width: 38px;
+        left: 5px;
+        width: 30px;
         height: auto;
         margin: 0;
         z-index: 10;
@@ -379,7 +383,7 @@ body, html {
     .header-title h1::after {
         content: "";
         display: block;
-        margin-top: 2px;
+        margin-top: 1.5px;
     }
 
     /* 3. ESTRELA: Logo abaixo do título, centralizada e com a cor original */
