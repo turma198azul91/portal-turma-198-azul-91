@@ -151,13 +151,6 @@ body, html {
     font-weight: 600;
 }
 
-.sub-description {
-    display: block;
-    font-size: 1.3rem;
-    margin-top: 10px;
-    opacity: 0.9;
-}
-
 .modal-validacao-container {
     display: none; /* Fica oculto até o JS mudar para flex */
     position: fixed;
@@ -334,7 +327,7 @@ body, html {
     .logo-turma {
         position: absolute;
         top: 5px;
-        left: -50px;
+        left: -20px;
         width: 25px;
         height: auto;
         margin: 0;
@@ -449,21 +442,6 @@ body, html {
         background: transparent !important; /* Tira o fundo horrível */
         border: none !important;            /* Tira bordas */
         box-shadow: none !important;
-    }
-
-    .description-container p {
-        font-size: 0.9rem;                 /* Tamanho de fonte legível */
-        line-height: 1.4;
-        text-align: justify;                 /* Centraliza o texto */
-        color: #ffffff;                     /* Texto branco para destacar na foto */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-    }
-
-    .sub-description {
-        font-size: 0.8rem;
-        display: block;
-        margin-top: 150px;
-        color: transparent;
     }
 
     /* MODAL DE VALIDAÇÃO MOBILE */
