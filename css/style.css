@@ -434,19 +434,18 @@ body, html {
     .description-container {
         width: 90%;
         max-width: 380px;
-        padding: 5px;
-        margin: 5px auto 0 auto;
-        background: transparent !important;
-        border: none !important;
+        margin: 15vh auto 0 auto;           /* Empurra o bloco para baixo (15vh do topo) e centraliza */
+        background: transparent !important; /* Tira o fundo horrível */
+        border: none !important;            /* Tira bordas */
         box-shadow: none !important;
     }
 
     .description-container p {
-        font-size: 0.85rem;
-        line-height: 1.35;
-        text-align: center;
-        color: transparent;
-        margin: 0;
+        font-size: 0.88rem;                 /* Tamanho de fonte legível */
+        line-height: 1.4;
+        text-align: center;                 /* Centraliza o texto */
+        color: #ffffff;                     /* Texto branco para destacar na foto */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     }
 
     .sub-description {
