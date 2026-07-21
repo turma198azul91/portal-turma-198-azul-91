@@ -232,7 +232,6 @@ body, html {
     100% { transform: rotate(10deg); }
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
     body, html {
         overflow-y: auto !important;
@@ -252,12 +251,25 @@ body, html {
         padding-top: 20px;
     }
 
-    .logo-container, .logo-turma {
-        display: none !important;
+    .logo-container {
+        display: block !important;
+    }
+    .logo-turma {
+        position: fixed !important;
+        top: 30px !important;
+        left: 15px !important;
+        width: 40px !important;
+        height: auto !important;
+        margin: 0 !important;
+        z-index: 9999 !important;
+        display: block !important;
     }
 
     .header-title {
-        margin-top: 30px;
+        position: relative;
+        margin-top: 5px;
+        width: 100%;
+        text-align: center;
     }
 
     .header-title h1 {
@@ -291,22 +303,29 @@ body, html {
         display: none;
     }
 
-    .menu-toggle {
-        display: block;
-        position: absolute;
-        top: 20px;
-        left: 15px;
-        background: linear-gradient(135deg, #1b5cb8, #113d7a);
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        padding: 10px 14px;
-        font-size: 1.3rem;
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        z-index: 100;
-        transition: all 0.2s ease;;
+    .star-separator {
+        margin: 5px 0 15px 0;
+        text-align: center;
     }
+    .star-separator i {
+        font-size: 1.3rem;
+        color: inherit;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        position: absolute;
+        top: 25px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        z-index: 1100;
+        padding: 5px;
+    }
+    
     .menu-toggle:active {
         transform: scale(0.95);
     }

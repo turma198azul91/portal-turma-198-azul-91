@@ -99,9 +99,9 @@ body, html {
     align-items: center;
     gap: 12px;
     width: 100%;
-    margin-top: 30px; /* Espaço abaixo da estrela */
+    margin-top: 30px;
     padding: 10px;
-    flex-wrap: wrap; /* Garante que quebre linha em telas menores */
+    flex-wrap: wrap;
 }
 
 .btn-nav {
@@ -152,22 +152,21 @@ body, html {
 }
 
 .modal-validacao-container {
-    display: none; /* Fica oculto até o JS mudar para flex */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.75); /* Fundo escuro elegante */
-    z-index: 9999; /* Garante que fique acima de tudo */
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-/* Caixa central do modal */
 .modal-validacao-box {
-    background: #112240; /* Azul escuro corporativo/harmonioso com o tema */
+    background: #112240;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     width: 100%;
@@ -178,7 +177,6 @@ body, html {
     color: #ffffff;
 }
 
-/* Botão de fechar (X) no canto superior direito */
 .modal-validacao-fechar {
     position: absolute;
     top: 15px;
@@ -195,7 +193,6 @@ body, html {
     color: #2d82ff;
 }
 
-/* Cabeçalho do modal */
 .modal-validacao-header {
     text-align: center;
     margin-bottom: 25px;
@@ -218,7 +215,6 @@ body, html {
     color: #b0c4de;
 }
 
-/* Grupos de campos do formulário */
 .modal-campo-grupo {
     margin-bottom: 18px;
 }
@@ -253,23 +249,20 @@ body, html {
     box-shadow: 0 0 8px rgba(45, 130, 255, 0.4);
 }
 
-/* Texto da Pergunta de Segurança dinâmica */
 .modal-pergunta-texto {
     background: rgba(255, 255, 255, 0.05);
     padding: 10px;
     border-radius: 6px;
     font-size: 0.95rem;
-    color: #ffcc00; /* Destaque leve para a pergunta */
+    color: #ffcc00;
     margin-bottom: 8px;
     border-left: 3px solid #ffcc00;
 }
 
-/* Mensagem de Erro / Bloqueio */
 .modal-mensagem-erro {
     margin-bottom: 15px;
 }
 
-/* Botão de enviar validação */
 .modal-btn-enviar {
     width: 100%;
     padding: 12px;
@@ -303,13 +296,25 @@ body, html {
         padding: 0;
     }
 
-    .hero-container, .overlay {
+    .hero-container {
         height: 100vh;
         width: 100vw;
         overflow: hidden;
         position: relative;
         padding: 10px;
         box-sizing: border-box;
+    }
+
+    .overlay {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        background: rgba(11, 19, 43, 0.75); 
     }
 
     .content {
@@ -323,18 +328,16 @@ body, html {
         padding-top: 15px;
     }
 
-    /* 1. LOGOTIPO: Menor e posicionado no canto superior esquerdo */
     .logo-turma {
-        position: absolute;
-        top: 5px;
-        left: -20px;
-        width: 25px;
+        position: fixed;
+        top: 30px;
+        left: 15px;
+        width: 40px;
         height: auto;
         margin: 0;
-        z-index: 10;
+        z-index: 9999;
     }
 
-    /* 4. MENU HAMBURGER: Posicionado no canto superior direito */
     .menu-toggle {
         display: flex !important;
         position: absolute;
@@ -349,9 +352,15 @@ body, html {
         padding: 5px;
     }
 
-    /* 2. TÍTULO: Centralizado no topo (separado da logo e do menu) */
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+
     .header-title {
-        margin-top: 30px;
+        position: relative;
+        margin-top: -13px;
+        width: 100%;
+        text-align: center;
     }
 
     .header-title h1 {
@@ -364,7 +373,6 @@ body, html {
         gap: 5px;
     }
 
-    /* Oculta as linhas decorativas laterais do título no mobile */
     .header-title .line {
         display: none; 
     }
@@ -388,17 +396,15 @@ body, html {
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     }
 
-    /* 3. ESTRELA: Logo abaixo do título, centralizada e com a cor original */
     .star-separator {
-        margin: 1px 0 10px 0;
+        margin: 5px 0 15px 0;
     }
 
     .star-separator i {
-        font-size: 0.8rem;
-        color: inherit; /* Resgata a cor original configurada no desktop */
+        font-size: 1.3rem;
+        color: inherit;
     }
 
-    /* MENU DROPDOWN EXPANDIDO (Centralizado na tela) */
     .navbar {
         display: none;
         flex-direction: column;
@@ -434,17 +440,20 @@ body, html {
         border-radius: 6px;
     }
 
-    /* 5. TEXTO: Centralizado, sem background, fonte legível */
     .description-container {
-        width: 90%;
+        width: 100%;
         max-width: 380px;
-        margin: 15vh auto 0 auto;           /* Empurra o bloco para baixo (15vh do topo) e centraliza */
-        background: transparent !important; /* Tira o fundo horrível */
-        border: none !important;            /* Tira bordas */
-        box-shadow: none !important;
+        margin: 70px auto 0 auto;
+        text-align: justify;
     }
 
-    /* MODAL DE VALIDAÇÃO MOBILE */
+    .description-container p {
+        font-size: 1.5rem;
+        font-weight: 900;
+        line-height: 1.5;
+        color: #b8bdcd;
+    }
+
     .modal-validacao-container {
         padding: 10px;
         align-items: center;
