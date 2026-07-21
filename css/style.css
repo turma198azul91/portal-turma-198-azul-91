@@ -441,9 +441,9 @@ body, html {
     }
 
     .description-container p {
-        font-size: 1rem;                 /* Tamanho de fonte legível */
+        font-size: 1.5rem;                 /* Tamanho de fonte legível */
         line-height: 1.4;
-        text-align: center;                 /* Centraliza o texto */
+        text-align: justify;                 /* Centraliza o texto */
         color: #ffffff;                     /* Texto branco para destacar na foto */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     }
