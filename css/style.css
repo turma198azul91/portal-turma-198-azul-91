@@ -335,7 +335,7 @@ body, html {
         position: absolute;
         top: 5px;
         left: -50px;
-        width: 20px;
+        width: 25px;
         height: auto;
         margin: 0;
         z-index: 10;
@@ -358,18 +358,17 @@ body, html {
 
     /* 2. TÍTULO: Centralizado no topo (separado da logo e do menu) */
     .header-title {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin: 0 auto 5px auto;
-        max-width: 75%; /* Garante espaço para a logo na esquerda e o menu na direita */
+        margin-top: 30px;
     }
 
     .header-title h1 {
-        font-size: 1.05rem; /* Fonte reduzida para caber perfeitamente */
-        line-height: 1.25;
-        text-align: center;
+        font-size: 0;
+        -webkit-text-stroke: 0;
+        text-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
     }
 
     /* Oculta as linhas decorativas laterais do título no mobile */
@@ -377,16 +376,28 @@ body, html {
         display: none; 
     }
 
-    /* Quebra o título em duas linhas de forma limpa */
+    .header-title h1::before {
+        content: "AZUL 91";        
+    }
+
     .header-title h1::after {
-        content: "";
+        content: "TURMA 198";
         display: block;
-        margin-top: 1.5px;
+        margin-top: 1px;
+    }
+    
+    .header-title h1::before, .header-title h1::after {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #0a3678;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 1.2px #ffffff; 
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     }
 
     /* 3. ESTRELA: Logo abaixo do título, centralizada e com a cor original */
     .star-separator {
-        margin: 2px 0 10px 0;
+        margin: 1px 0 10px 0;
     }
 
     .star-separator i {
@@ -441,7 +452,7 @@ body, html {
     }
 
     .description-container p {
-        font-size: 0.85rem;                 /* Tamanho de fonte legível */
+        font-size: 0.9rem;                 /* Tamanho de fonte legível */
         line-height: 1.4;
         text-align: justify;                 /* Centraliza o texto */
         color: #ffffff;                     /* Texto branco para destacar na foto */
@@ -449,9 +460,9 @@ body, html {
     }
 
     .sub-description {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         display: block;
-        margin-top: 4px;
+        margin-top: 150px;
         color: transparent;
     }
 
