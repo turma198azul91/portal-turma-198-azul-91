@@ -299,189 +299,198 @@ body, html {
 
 @media screen and (max-width: 768px) {
 
-    /* Evita qualquer scroll na página inteira */
+    /* Trava o scroll da página inteira para evitar barras indesejadas */
     html, body {
         width: 100%;
         height: 100vh;
         overflow: hidden;
         margin: 0;
         padding: 0;
+        position: relative;
     }
 
-    /* Ajuste do container principal para encaixar sem rolar */
-    .hero-container {
+    .hero-container, .overlay {
         height: 100vh;
+        width: 100vw;
         overflow: hidden;
-    }
-
-    .overlay {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        position: relative;
         padding: 10px;
-        overflow: hidden;
+        box-sizing: border-box;
     }
 
     .content {
         width: 100%;
-        max-width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        position: relative;
+        padding-top: 15px;
     }
 
-    /* 1. Logotipo reduzido proporcionalmente mantendo animações */
+    /* 1. Logotipo reduzido e fixado no canto superior esquerdo */
     .logo-turma {
-        width: 55px;
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        width: 42px;
         height: auto;
-        margin-bottom: 5px;
+        margin: 0;
+        z-index: 10;
     }
 
-    /* 2. Título em duas linhas e ocultação do hífen */
+    /* 4. Ícone do Menu Toggle (Hamburger) fixado no canto superior direito */
+    .menu-toggle {
+        display: flex !important;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1100;
+        padding: 5px;
+    }
+
+    /* 2. Título centralizado no topo (com quebra em duas linhas e sem hífen central) */
     .header-title {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        margin: 5px 0;
+        margin: 0 auto 5px auto;
+        max-width: 75%; /* Deixa espaço livre nas laterais para a logo e o menu */
     }
 
     .header-title h1 {
-        font-size: 1.25rem;
-        line-height: 1.2;
+        font-size: 1.15rem;
+        line-height: 1.25;
         text-align: center;
-        max-width: 90vw;
-        word-break: keep-all;
+        word-spacing: 2px;
     }
 
-    /* Oculta os hífens nas laterais e o hífen central do texto no mobile */
+    /* Oculta as linhas decorativas laterais do título */
     .header-title .line {
         display: none; 
     }
 
-    /* Truque para ocultar apenas o hífen do texto mantendo o texto limpo */
-    /* Caso o hífen esteja hardcoded no HTML, ajustamos via quebra de linha visual */
+    /* Força a quebra limpa entre "Turma 198" e "Azul 91" limpando o hífen */
     .header-title h1::after {
         content: "";
         display: block;
+        margin-top: 2px;
     }
 
-    /* 3. Estrela centralizada e reduzida proporcionalmente */
+    /* 3. Estrela logo abaixo do título, centralizada e proporcional */
     .star-separator {
-        margin: 5px 0;
+        margin: 0 0 10px 0;
     }
 
     .star-separator i {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        color: #ffcc00;
     }
 
-    /* 4. Menu Dropdown Compacto e Translúcido (Sem vazar e sem scroll) */
+    /* 4. Menu Dropdown expandido centralizado ocupando boa parte da tela */
     .navbar {
-        display: none; /* Inicialmente recolhido pelo toggle */
+        display: none; /* Recolhido por padrão */
         flex-direction: column;
-        position: absolute;
-        top: 110px;
+        position: fixed;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
-        width: 88%;
-        max-height: calc(100vh - 220px);
-        background: rgba(11, 19, 43, 0.85); /* Fundo translúcido sutil / glassmorphism */
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
-        padding: 10px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-        z-index: 1000;
-        overflow-y: auto; /* Apenas se houver excesso de itens, mas contido no dropdown */
+        transform: translate(-50%, -50%);
+        width: 85%;
+        max-width: 320px;
+        max-height: 80vh;
+        background: rgba(11, 19, 43, 0.95); /* Fundo translúcido sutil e elegante */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 40px 15px 20px 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+        z-index: 1200;
+        overflow-y: auto;
     }
 
-    /* Quando a classe active for acionada pelo script.js */
+    /* Quando ativado pelo script.js */
     .navbar.active {
         display: flex;
     }
 
+    /* Botão interno de fechar (X) dentro do menu expandido */
+    .menu-fechar-mobile {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        font-size: 1.4rem;
+        cursor: pointer;
+    }
+
     .btn-nav {
         width: 100%;
-        padding: 8px 10px;
-        font-size: 0.85rem;
+        padding: 10px;
+        font-size: 0.9rem;
         text-align: center;
         justify-content: center;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         border-radius: 6px;
     }
 
-    /* 5. Texto descritivo compacto, legível e sem vazamentos */
+    /* 5. Texto descritivo centralizado, sem background, fonte ligeiramente maior e legível */
     .description-container {
-        width: 92%;
-        max-width: 400px;
-        padding: 8px 12px;
-        margin-top: 8px;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 8px;
+        width: 90%;
+        max-width: 380px;
+        padding: 5px;
+        margin: 5px auto 0 auto;
+        background: transparent !important; /* Retira totalmente o background */
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .description-container p {
-        font-size: 0.8rem;
-        line-height: 1.35;
+        font-size: 0.88rem; /* Aumentado levemente para melhorar a leitura */
+        line-height: 1.4;
         text-align: center;
+        color: #f0f0f0;
         margin: 0;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); /* Garante leitura nítida sobre a foto de fundo */
     }
 
     .sub-description {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         display: block;
-        margin-top: 3px;
+        margin-top: 5px;
+        color: #d0d0d0;
     }
 
-    /* 6. Modal de Validação Adaptado para Mobile (Sem barra de rolagem) */
+    /* 6. Modal de Validação Ajustado para Mobile */
     .modal-validacao-container {
         padding: 10px;
         align-items: center;
     }
 
     .modal-validacao-box {
-        width: 95%;
-        max-width: 340px;
-        padding: 18px;
-        max-height: 90vh;
-        overflow-y: auto; /* Permite rolar apenas dentro do modal se a tela for minúscula */
+        width: 92%;
+        max-width: 330px;
+        padding: 15px;
+        max-height: 85vh;
+        overflow-y: auto;
         border-radius: 10px;
     }
 
     .modal-validacao-header h2 {
-        font-size: 1.2rem;
-    }
-
-    .modal-validacao-header i {
-        font-size: 2rem;
-        margin-bottom: 5px;
-    }
-
-    .modal-campo-grupo {
-        margin-bottom: 10px;
-    }
-
-    .modal-campo-grupo label {
-        font-size: 0.8rem;
-        margin-bottom: 3px;
+        font-size: 1.1rem;
     }
 
     .modal-campo-grupo input {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-    }
-
-    .modal-pergunta-texto {
         padding: 8px;
-        font-size: 0.85rem;
-    }
-
-    .modal-btn-enviar {
-        padding: 10px;
         font-size: 0.9rem;
     }
 }
