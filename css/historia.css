@@ -75,8 +75,8 @@ body, html {
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
 }
 
-.icon-yellow {
-    color: #e5b842;
+.icon-white {
+    color: #ffffff;
     font-size: 1rem;
 }
 

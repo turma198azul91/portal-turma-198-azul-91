@@ -77,8 +77,8 @@ body, html {
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
 }
 
-.icon-yellow {
-    color: #e5b842;
+.icon-white {
+    color: #ffffff;
     font-size: 1rem;
 }
 
@@ -123,6 +123,7 @@ body, html {
 
 .btn-gerar-tarjeta-nav {
     margin-left: 20px;
+    display: inline-flex !important;
 }
 
 .logo-container {
@@ -668,141 +669,242 @@ body, html {
     background-color: #002277;
 }
 
+.btn-gerar-flutuante {
+    display: none !important;
+}
+
 .preloader ~ * .menu-toggle,
 .menu-toggle {
     display: none !important;
 }
 
 @media (max-width: 1024px) {
-    body, html {
-        overflow-y: auto !important;
-        height: auto !important;
-    }
-    .hero-container {
-        height: auto;
-        min-height: 100vh;
-    }
-    .overlay {
-        height: auto;
-        min-height: 100vh;
-        align-items: flex-start;
-    }
-    .content-wrapper {
-        height: auto;
-        padding-top: 20px;
-    }
 
-    .logo-container {
-        display: block !important;
-    }
-    .logo-turma {
-        position: fixed !important;
-        top: 30px !important;
-        left: 15px !important;
-        width: 40px !important;
-        height: auto !important;
-        margin: 0 !important;
-        z-index: 9999 !important;
-        display: block !important;
-    }
+body, html {
 
-    .header-title {
-        position: relative;
-        margin-top: 5px;
-        width: 100%;
-        text-align: center;
-    }
+overflow-y: auto !important;
 
-    .header-title h1 {
-        font-size: 0;
-        -webkit-text-stroke: 0;
-        text-shadow: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
+height: auto !important;
 
-    .header-title h1::before {
-        content: "AZUL 91";
-    }
+}
 
-    .header-title h1::after {
-        content: "TARJETA";
-    }
-    
-    .header-title h1::before, .header-title h1::after {
-        font-size: 1.8rem;
-        font-weight: 900;
-        color: #0a3678;
-        letter-spacing: 2px;
-        -webkit-text-stroke: 1.2px #ffffff; 
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-    }
+.hero-container {
 
-    .line {
-        display: none;
-    }
+height: auto;
 
-    .star-separator {
-        margin: 5px 0 15px 0;
-        text-align: center;
-    }
-    .star-separator i {
-        font-size: 1.3rem;
-        color: inherit;
-    }
+min-height: 100vh;
 
-    body.loaded .menu-toggle {
-        display: flex !important;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: transparent;
-        border: none;
-        color: #ffffff;
-        font-size: 1.8rem;
-        cursor: pointer;
-        z-index: 999999 !important;
-        pointer-events: auto !important;
-    }
-    
-    .menu-toggle:active {
-        transform: scale(0.95);
-    }
+}
 
-    .navbar {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        padding: 15px 10px;
-        background: rgba(6, 21, 43, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        margin-bottom: 20px;
-        z-index: 999998 !important;
-    }
+.overlay {
 
-    .navbar.active {
-        display: flex !important;
-    }
+height: auto;
 
-    .btn-nav {
-        width: 100%;
-        padding: 12px;
-        font-size: 1rem;
-    }
+min-height: 100vh;
 
-    .btn-gerar-tarjeta-nav {
-        margin-left: 0;
-    }
+align-items: flex-start;
+
+}
+
+.content-wrapper {
+
+height: auto;
+
+padding-top: 20px;
+
+}
+
+.logo-container {
+
+display: block !important;
+
+}
+
+.logo-turma {
+
+position: fixed !important;
+
+top: 30px !important;
+
+left: 15px !important;
+
+width: 40px !important;
+
+height: auto !important;
+
+margin: 0 !important;
+
+z-index: 9999 !important;
+
+display: block !important;
+
+}
+
+.header-title {
+
+position: relative;
+
+margin-top: 5px;
+
+width: 100%;
+
+text-align: center;
+
+}
+
+.header-title h1 {
+
+font-size: 0;
+
+-webkit-text-stroke: 0;
+
+text-shadow: none;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+gap: 5px;
+
+}
+
+.header-title h1::before {
+
+content: "AZUL 91";
+
+}
+
+.header-title h1::after {
+
+content: "TARJETA";
+
+}
+
+.header-title h1::before, .header-title h1::after {
+
+font-size: 1.8rem;
+
+font-weight: 900;
+
+color: #0a3678;
+
+letter-spacing: 2px;
+
+-webkit-text-stroke: 1.2px #ffffff;
+
+text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+
+}
+
+.line {
+
+display: none;
+
+}
+
+.star-separator {
+
+margin: 5px 0 15px 0;
+
+text-align: center;
+
+}
+
+.star-separator i {
+
+font-size: 1.3rem;
+
+color: inherit;
+
+}
+
+body.loaded .menu-toggle {
+
+display: flex !important;
+
+position: fixed;
+
+top: 20px;
+
+right: 20px;
+
+background: transparent;
+
+border: none;
+
+color: #ffffff;
+
+font-size: 1.8rem;
+
+cursor: pointer;
+
+z-index: 999999 !important;
+
+pointer-events: auto !important;
+
+}
+
+.menu-toggle:active {
+
+transform: scale(0.95);
+
+}
+
+.navbar {
+
+display: none;
+
+flex-direction: column;
+
+width: 100%;
+
+gap: 10px;
+
+padding: 15px 10px;
+
+background: rgba(6, 21, 43, 0.95);
+
+border: 1px solid rgba(255, 255, 255, 0.1);
+
+border-radius: 8px;
+
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+margin-bottom: 20px;
+
+z-index: 999998 !important;
+
+}
+
+.navbar.active {
+
+display: flex !important;
+
+}
+
+.btn-nav {
+
+width: 100%;
+
+padding: 12px;
+
+font-size: 1rem;
+
+}
+
+.btn-gerar-tarjeta-nav {
+
+margin-left: 0;
+
+}
+
 }
 
 @media (max-width: 768px) {
     .letra {
-          font-size: 1.6rem; /* Reduz o tamanho da fonte para caber na tela do celular */
+          font-size: 1.6rem;
       }
 
     .popup-tarjeta-grande {
@@ -814,7 +916,6 @@ body, html {
         padding: 15px 10px;
     }
 
-    /* Reduz levemente a tarjeta no celular caso a tela seja muito estreita, mantendo a proporção */
     .popup-tg-body .tarjeta {
         transform: scale(1) !important;
     }
